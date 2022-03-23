@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { QueryHandlers } from './application/queryHanders';
 
 @Module({
   imports: [],
   controllers: [],
-  providers: [],
+  providers: [...QueryHandlers],
 })
 export class AppModule {}
