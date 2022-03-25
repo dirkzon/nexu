@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../docs/nexu_logo_with_name.svg" width="320" alt="Architect Logo" /></a>
+</p>
+
 # Post service
  The post service handles all the logic regarding the posts which this includes 
 
@@ -7,39 +11,39 @@
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest Logo"/></a>
 
-<a href="https://www.mongodb.com/" target="blank"><img src="https://webimages.mongodb.com/_com_assets/cms/kusb9stg1ndrp7j53-MongoDBLogoBrand1.png" width="110" alt="Mongo Logo"/></a>
+<a href="https://www.mongodb.com/" target="blank"><img src="https://webimages.mongodb.com/_com_assets/cms/kusb9stg1ndrp7j53-MongoDBLogoBrand1.png" width="160" alt="Mongo Logo"/></a>
 
 
 ## Architecture
 This services is built with the Hexagonal pattern with CQRS.
 
-![post-service architecture](./docs/post-service%20architecture.svg)
+![Post-service architecture but the image is gone (╯°□°）╯︵ ┻━┻](./docs/post-service%20architecture.svg)
 
 ## Installation
 ```bash
-$ npm install
+$ pnpm install
 ```
 
 ## Running the app
 ```bash
 # development
-$ npm run start
+$ pnpm run start
 
 # watch mode
-$ npm run start:dev
+$ pnpm run start:dev
 
 # production mode
-$ npm run start:prod
+$ pnpm run start:prod
 ```
 
 ## Test
 ```bash
 # unit tests
-$ npm run test
+$ pnpm run test
 
 # e2e tests
-$ npm run test:e2e
+$ pnpm run test:e2e
 
 # test coverage
-$ npm run test:cov
+$ pnpm run test:cov
 ```
