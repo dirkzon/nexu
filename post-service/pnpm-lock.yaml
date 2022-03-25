@@ -5,6 +5,7 @@ specifiers:
   '@nestjs/cli': ^8.0.0
   '@nestjs/common': ^8.0.0
   '@nestjs/core': ^8.0.0
+  '@nestjs/cqrs': ^8.0.3
   '@nestjs/graphql': ^10.0.7
   '@nestjs/platform-express': ^8.0.0
   '@nestjs/schematics': ^8.0.0
@@ -41,6 +42,7 @@ dependencies:
   '@nestjs/apollo': 10.0.7_cd40b36624429e651a34ae722cf3b5de
   '@nestjs/common': 8.4.1_e7ea248743279784063e3708d703abc5
   '@nestjs/core': 8.4.1_03a788a1eb0bf93a7b64e9ce96523e26
+  '@nestjs/cqrs': 8.0.3_b68caa36af62aa4e088f563096b746ee
   '@nestjs/graphql': 10.0.7_a8146428615bb3a012a1f0a3dacb05fa
   '@nestjs/platform-express': 8.4.1_214a294e539403889bf33d78c1f08a26
   amqp-connection-manager: 4.1.1_amqplib@0.8.0
@@ -1012,6 +1014,21 @@ packages:
       uuid: 8.3.2
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@nestjs/cqrs/8.0.3_b68caa36af62aa4e088f563096b746ee:
+    resolution: {integrity: sha512-OVZ4yUcJCGnkpPD0gntzCLBd/4Nv6hFVioFMcARs/V7U7CbzraaBinT8+mr9XuoKj9aYX6XCI9qz0+KR8rMSqQ==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0
+      '@nestjs/core': ^8.0.0
+      reflect-metadata: 0.1.13
+      rxjs: ^7.2.0
+    dependencies:
+      '@nestjs/common': 8.4.1_e7ea248743279784063e3708d703abc5
+      '@nestjs/core': 8.4.1_03a788a1eb0bf93a7b64e9ce96523e26
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.5
+      uuid: 8.3.2
     dev: false
 
   /@nestjs/graphql/10.0.7_a8146428615bb3a012a1f0a3dacb05fa:

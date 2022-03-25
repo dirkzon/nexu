@@ -1,23 +1,16 @@
 import { Module } from '@nestjs/common';
-import { Transport, ClientsModule } from '@nestjs/microservices';
+import { ClientsModule } from '@nestjs/microservices';
+import { RabbitConfig } from './infrastructure/adaptors/RabbitMQ/config';
 import { RabbitMQController } from './infrastructure/adaptors/RabbitMQ/controllers/RabbitMQController';
+import { CqrsModule } from '@nestjs/cqrs';
+import { QueryHandlers } from './application/queryHandlers';
 
 @Module({
-  imports: [ClientsModule.register([
-    { 
-      name: 'POST_SERVICE', 
-      transport: Transport.RMQ,
-      options: {
-        urls: ['amqp://guest:guest@localhost:5672/'],
-        queue: 'post_queue',
-        queueOptions: {
-          durable: true,
-              },
-        },
-     },
-   ]),
+  imports: [
+    ClientsModule.register(RabbitConfig()),
+    CqrsModule,
   ],
   controllers: [RabbitMQController],
-  providers: [],
+  providers: [...QueryHandlers],
 })
 export class AppModule {}
