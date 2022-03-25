@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" style="text-align: center">
   <img src="../docs/nexu_logo_with_name.svg" width="320" alt="Architect Logo" /></a>
 </p>
 
@@ -11,7 +11,7 @@
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest Logo"/></a>
 
-<a href="https://www.mongodb.com/" target="blank"><img src="https://webimages.mongodb.com/_com_assets/cms/kusb9stg1ndrp7j53-MongoDBLogoBrand1.png" width="160" alt="Mongo Logo"/></a>
+<a href="https://www.mongodb.com/" target="blank"><img src="https://webimages.mongodb.com/_com_assets/cms/kusb9stg1ndrp7j53-MongoDBLogoBrand1.png" width="150" alt="Mongo Logo"/></a>
 
 
 ## Architecture

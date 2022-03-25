@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" style="text-align: center">
   <img src="./docs/nexu_logo_with_name.svg" width="320" alt="Architect Logo" /></a>
 </p>
 
