@@ -10,7 +10,11 @@ export class RabbitMQController {
     constructor(private readonly queryBus: QueryBus) {}
 
     @MessagePattern()
-    GetPostById(@Payload() data: {}, @Ctx() context: RmqContext) {
-        this.queryBus.execute(new GetPostByIdQuery(data as string));
+    async GetPostById(@Payload() data: {}, @Ctx() context: RmqContext) {
+        const post = await this.queryBus.execute(new GetPostByIdQuery(data as string));
+        console.log(post)
+        const originalMsg = context.getMessage();
+        context.getChannelRef().ack(originalMsg);
+        return post;
     }
 }
