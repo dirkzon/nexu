@@ -8,6 +8,7 @@ export class Post {
   description: string;
   @IsDate()
   createdAt: Date;
+  @IsString()
   createdBy: string;
   @IsArray()
   @ValidateNested({ each: true })
