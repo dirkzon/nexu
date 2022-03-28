@@ -12,7 +12,7 @@ import { MongoOptionsConfig, MongoFeatureConfig } from './infrastructure/adaptor
 
 @Module({
   imports: [
-    ConfigModule.forRoot({envFilePath: "../.env", isGlobal: true}),
+    ConfigModule.forRoot(),
     ClientsModule.register(RabbitConfig()),
     CqrsModule,
     MongooseModule.forRoot(MongoOptionsConfig()),

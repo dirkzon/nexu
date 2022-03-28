@@ -3,7 +3,7 @@ import { PostEntity, PostSchema } from "./models/post.schema";
 import { ImageEntity, ImageSchema } from "./models/image.schema";
 
 export function MongoOptionsConfig(): string {
-    return 'mongodb://localhost/post-service';
+    return "mongodb://localhost/post-service";
 }
 
 export function MongoFeatureConfig(): ModelDefinition[] {
