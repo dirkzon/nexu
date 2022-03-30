@@ -3,9 +3,9 @@ import { IsString, Length } from "class-validator";
 
 export class GetPostByIdQuery implements IQuery {
     @IsString()
-    readonly _id: string;
+    readonly id: string;
 
     constructor(id: string) {   
-        this._id = id;
+        this.id = id;
     }
 }

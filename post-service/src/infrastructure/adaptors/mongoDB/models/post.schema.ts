@@ -10,9 +10,9 @@ export class PostEntity {
     @Prop({ required: true })
     id: string;
     @Prop()
-    description?: string;
+    description: string;
     @Prop({ required: true })
-    createdAt: string;
+    createdAt: Date;
     @Prop({ required: true })
     createdBy: string;
     @Prop({type: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'Image'}], required: true})

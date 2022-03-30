@@ -9,7 +9,7 @@ export class GetPostByIdQueryHandler implements IQueryHandler<GetPostByIdQuery> 
     constructor(private readonly store: PostStore) {}
 
     async execute(query: GetPostByIdQuery): Promise<Post> {
-        await ValidateClass(query).catch((e) => { console.log(e)});
-        return await this.store.GetPostById(query._id);
+        await ValidateClass(query);
+        return await this.store.GetPostById(query.id);
     }
 }

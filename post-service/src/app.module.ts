@@ -13,6 +13,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLConfig } from './infrastructure/adaptors/GraphQL/config';
 import { GraphQLController } from './infrastructure/adaptors/GraphQL/controllers/GraqphQLController';
+import { CommandHandlers } from './application/commandHandlers';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { GraphQLController } from './infrastructure/adaptors/GraphQL/controllers
   providers: [
     GraphQLController,
     ...QueryHandlers,
+    ...CommandHandlers,
     { 
       provide: PostStore, 
       useClass: MongoPostStore
