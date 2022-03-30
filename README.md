@@ -13,7 +13,12 @@ Nexu is an image sharing platform. This monorepository will contain all the serv
 
 !['Nexu architecture diagram (⌐■_■)'](./docs/Nexu%20architecture.svg)
 
-## Todo 📋
+## Todo
 
 - [ ] Post-Service
+- [ ] Account-Service
+- [ ] Auth-Service
+- [ ] Comment-Service
+- [ ] Notification-Service
+- [ ] Media-Service
 - [ ] Api-Gateway
