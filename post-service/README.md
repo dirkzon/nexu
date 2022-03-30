@@ -3,10 +3,13 @@
 </p>
 
 # Post service
- The post service handles all the logic regarding the posts which this includes 
+ The post service handles all the logic regarding the posts. The features are:
 
-- Creating posts
-- Deleting posts 
+- [X] Creating posts
+- [ ] Deleting posts 
+- [x] Get post by id
+- [ ] Get all posts from user
+  - [ ] Use pagination
 
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest Logo"/></a>
