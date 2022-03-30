@@ -12,6 +12,11 @@ export class MongoPostStore implements PostStore {
         private readonly model: Model<PostDocument>
     ) {}
 
+    async CreatePost(new_post: Post): Promise<Post> {
+        const post = new this.model(new_post);
+        return Promise.resolve(await post.save());
+    }
+
     async GetPostById(id: string): Promise<Post> {
         return Promise.resolve(await this.model.findOne({id: id}));
     }

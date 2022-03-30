@@ -47,3 +47,12 @@ $ pnpm run test:e2e
 # test coverage
 $ pnpm run test:cov
 ```
+
+## Playground
+Access the GraphQL playground through `localhost:3000/graphql`
+
+## Docker
+```bash
+# run MongoDB and RabbitMQ
+$ docker-compose up
+``` 

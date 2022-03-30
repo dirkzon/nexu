@@ -5,18 +5,22 @@ import { Transport } from "@Nestjs/microservices";
 const { SERVICE, MESSAGEBUS_URL, MESSAGEBUS_QUEUE } = process.env;
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(AppModule, {
+
+  const app = await NestFactory.create(AppModule);
+  app.connectMicroservice({
     logger: console,
     transport: Transport.RMQ,
     options: { 
-         urls: [MESSAGEBUS_URL],
-         noAck: false,
-         queue: `${MESSAGEBUS_QUEUE}`,
-         queueOptions: { 
-            durable: true,
-           },
+        urls: [MESSAGEBUS_URL],
+        noAck: false,
+        queue: `${MESSAGEBUS_QUEUE}`,
+        queueOptions: { 
+          durable: true,
           },
+        },
   }); 
-  await app.listen().then(() => console.log(`${SERVICE} started`));
+
+  await app.startAllMicroservices();
+  await app.listen(3000).then(() => console.log(`${SERVICE} started`));
 }
 bootstrap();
