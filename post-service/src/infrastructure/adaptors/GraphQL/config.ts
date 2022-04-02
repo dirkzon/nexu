@@ -1,10 +1,10 @@
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
+import { ApolloDriverConfig, ApolloFederationDriver } from "@nestjs/apollo";
 
 export function GraphQLConfig(): ApolloDriverConfig {
     return {
-        driver: ApolloDriver,
+        driver: ApolloFederationDriver,
         debug: false,
         playground: true,
-        autoSchemaFile: true,
+        autoSchemaFile: 'postschema.gql',
     }
 }
