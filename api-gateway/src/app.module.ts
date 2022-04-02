@@ -1,26 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
-import { IntrospectAndCompose } from '@apollo/gateway';
+import { ApolloGatewayDriverConfig } from '@nestjs/apollo';
+import { ConfigModule } from '@nestjs/config';
+import { GraphQLConfig } from './config';
 
 @Module({
-  imports: [GraphQLModule.forRoot<ApolloGatewayDriverConfig>({
-    driver: ApolloGatewayDriver,
-    server: {
-      logger: console,
-      playground: true,
-    },
-    gateway: {
-      supergraphSdl: new IntrospectAndCompose({
-        subgraphs: [
-          { name: 'posts', url: 'http://localhost:3000/graphql' },
-        ],
-      }),
-    }
-  })],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot(),
+    GraphQLModule.forRoot<ApolloGatewayDriverConfig>(GraphQLConfig())
+  ],
+  providers: [],
 })
 export class AppModule {}
