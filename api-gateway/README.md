@@ -5,6 +5,7 @@
 # API gateway
 This api gateway works with Apollo Federation to create a single GraphQL endpoint for Nexu. 
 ![gateway subgraph example ╰(*°▽°*)╯. based on https://www.apollographql.com/docs/federation/](./docs/api-gateway%20architecture.svg)
+
 In the example above you can see that the subgraphs of some services are combined within the API-gateway to create a single graph which the client is able to query. 
 
 ## Tech Stack
@@ -29,15 +30,6 @@ $ pnpm run start:dev
 
 # production mode
 $ pnpm run start:prod
-```
-
-## Test
-```bash
-# unit tests
-$ pnpm run test
-
-# test coverage
-$ pnpm run test:cov
 ```
 
 ## Playground
