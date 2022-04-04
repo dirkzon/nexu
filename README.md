@@ -7,7 +7,9 @@ Nexu is an image sharing platform. This monorepository will contain all the serv
 
 ## Services
 
+- [Api-gateway](./api-gateway/)
 - [Post-service](./post-service/)
+- [Auth-service](./auth-service/)
 
 ## Architecture
 
