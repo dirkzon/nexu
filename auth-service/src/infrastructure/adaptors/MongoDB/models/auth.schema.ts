@@ -8,7 +8,7 @@ export class AuthEntity {
     @Prop({ required: true })
     id: string;
     @Prop({ required: true })
-    passHash: string;
+    passwordHash: string;
     @Prop({ required: true })
     email: string;
     @Prop({ required: true })

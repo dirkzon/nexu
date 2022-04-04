@@ -12,6 +12,11 @@ export class MongoAuthStore implements AuthStore {
         private readonly model: Model<AuthDocument>
     ) {}
 
+    async createUser(new_user: User): Promise<User> {
+        const user = new this.model(new_user);
+        return Promise.resolve(await user.save());
+    }
+
     async getUserByData(user_data: string): Promise<User> {
         return Promise.resolve(await this.model.findOne({
             $or: [
