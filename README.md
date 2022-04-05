@@ -3,7 +3,7 @@
 </p>
 
 ## Introduction
-Nexu is an image sharing platform. This monorepository will contain all the services.
+Nexu is an image sharing platform. This monorepository will contain all the services. All requirements can be found in the [requirements document](./docs/Project%20Requirements.pdf).
 
 ## Services
 
