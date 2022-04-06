@@ -19,6 +19,13 @@ export class GraphQLController {
 
     @Mutation(() => User)
     async CreateUser(@Args({ name: 'new_user', type: () => UserInput }) new_user: UserInput) {
-        return await this.commandBus.execute(new CreateUserCommand(new_user.name, new_user.email, new_user.bio));
+        return await this.commandBus.execute(
+            new CreateUserCommand(
+                new_user.name, 
+                new_user.email,
+                 new_user.bio, 
+                 new_user.password
+                 )
+        );
     }
 }

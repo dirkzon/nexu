@@ -1,12 +1,16 @@
-import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
+import { CommandHandler, EventBus, ICommandHandler } from "@nestjs/cqrs";
 import { ValidateClass } from "src/infrastructure/services/validator";
 import { CreateUserCommand } from "../commands/create-user.command";
 import { UserStore } from "../ports/user.store";
 import { v4 } from "uuid";
+import { UserCreatedEvent } from "../events/user-created.event";
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
-    constructor(readonly userStore: UserStore) {}
+    constructor(
+        readonly userStore: UserStore,
+        readonly eventBus: EventBus,
+        ) {}
 
     async execute(command: CreateUserCommand): Promise<any> {
         await ValidateClass(command);
@@ -20,7 +24,14 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
                 width: 720,
                 id: v4(),
             }
+        }).then(async (user) => {
+            await this.eventBus.publish(new UserCreatedEvent(
+                user.name,
+                user.email,
+                user.id,
+                command.password,
+                ));
+            return user;
         });
     }
-
 }

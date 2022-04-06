@@ -10,6 +10,6 @@ export class GetUserByIdQueryHandler implements IQueryHandler<GetUserByIdQuery> 
 
     async execute(query: GetUserByIdQuery): Promise<User> {
         await ValidateClass(query);
-        return await this.userStore.GetUserById(query.id);
+        return await this.userStore.GetUserById(query.id)
     }
 }
