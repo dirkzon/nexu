@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @key(fields: String!) on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+type Image {
+  id: ID!
+  url: String!
+  height: Float!
+  width: Float!
+}
+
+type User {
+  name: String!
+  id: ID!
+  email: String!
+  createdAt: DateTime!
+  bio: String!
+  avatar: Image!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  GetUserById(id: String!): User!
+}
+
+type Mutation {
+  CreateUser(new_user: UserInput!): User!
+}
+
+input UserInput {
+  name: String!
+  email: String!
+  bio: String!
+}
