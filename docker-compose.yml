@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  post-service: 
+    build: 
+      context: ./post-service/
+      dockerfile: dockerfile
+    ports:
+      - 3000:3000

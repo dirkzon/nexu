@@ -1,0 +1,11 @@
+FROM node:lts-alpine
+WORKDIR /app
+RUN apk add --no-cache curl \
+    && curl -sL https://unpkg.com/@pnpm/self-installer | node
+ENV NODE_ENV build
+USER root
+COPY package.json pnpm-lock.yaml tsconfig.build.json ./
+RUN pnpm install --prod --frozen-lockfile
+COPY . .
+EXPOSE 3000
+CMD ["pnpm", "run", "start:prod"]
