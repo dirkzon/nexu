@@ -1,9 +1,18 @@
 version: '3'
 
 services:
-  post-service: 
-    build: 
-      context: ./post-service/
-      dockerfile: dockerfile
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
     ports:
-      - 3000:3000
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - nexu_network
+
+networks:
+  nexu_network:
+    name: nexu_network

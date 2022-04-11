@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Post } from "src/domain/models/Post";
+import { Post } from "../../domain/models/Post";
 
 @Injectable()
 export abstract class PostStore {

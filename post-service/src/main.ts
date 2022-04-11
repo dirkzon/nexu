@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Transport } from "@Nestjs/microservices";
 
 const { SERVICE, MESSAGEBUS_URL, MESSAGEBUS_QUEUE } = process.env;
 
@@ -9,11 +8,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice({
     logger: console,
-    transport: Transport.RMQ,
+    transport: 5, //Transport.RMQ
     options: { 
-        urls: [MESSAGEBUS_URL],
+        urls: ['amqp://guest:guest@rabbitmq:5672/'],
         noAck: false,
-        queue: `${MESSAGEBUS_QUEUE}`,
+        queue: `post_queue`,
         queueOptions: { 
           durable: true,
           },

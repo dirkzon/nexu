@@ -1,28 +1,23 @@
 version: '3'
 
 services:
-    mongo:
-      image: mongo:latest
-      environment:
-        - MONGO_INITDB_DATABASE=post-service-db
-      volumes:
-        - ./data/db:/data/db
-        - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
-      ports:
-        - '27017:27017'
-
-    rabbitmq:
-      image: rabbitmq:3-management-alpine
-      container_name: 'rabbitmq'
-      ports:
-        - 5672:5672
-        - 15672:15672
-      volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-      networks:
-        - rabbitmq_go_net
+  post-service:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    ports:
+      - 3000:3000 
+      
+  post-mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=post-service-db
+    volumes:
+      - ./data/db:/data/db
+      - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    ports:
+      - '27017:27017'
 
 networks:
-  rabbitmq_go_net:
-    driver: bridge
+  default: 
+      name: nexu_network
