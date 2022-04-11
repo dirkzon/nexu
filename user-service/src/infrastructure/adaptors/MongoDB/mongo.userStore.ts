@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { Model } from 'mongoose';
 import { InjectModel } from "@nestjs/mongoose";
-import { UserStore } from "src/application/ports/user.store";
 import { UserDocument, UserEntity } from "./models/user.schema";
-import { User } from "src/domain/models/User";
+import { User } from "../../../domain/models/User";
+import { UserStore } from "../../../application/ports/user.store";
 
 @Injectable()
 export class MongoUserStore implements UserStore {

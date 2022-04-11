@@ -3,7 +3,7 @@ import { UserEntity, UserSchema } from "./models/user.schema";
 import { ImageEntity, ImageSchema } from "./models/image.schema";
 
 export function MongoOptionsConfig(): string {
-    return "mongodb://localhost/user-service";
+    return "mongodb://user-mongo/user-service";
 }
 
 export function MongoFeatureConfig(): ModelDefinition[] {

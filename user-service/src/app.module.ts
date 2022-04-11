@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CqrsModule } from '@nestjs/cqrs';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ClientProxyFactory, ClientsModule } from '@nestjs/microservices';
+import { ClientsModule } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CommandHandlers } from './application/commandHandlers';
 import { EventsHandlers } from './application/eventHandlers';

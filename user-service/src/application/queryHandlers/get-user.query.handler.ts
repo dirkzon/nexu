@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { User } from "src/domain/models/User";
-import { ValidateClass } from "src/infrastructure/services/validator";
+import { User } from "../../domain/models/User";
+import { ValidateClass } from "../../infrastructure/services/validator";
 import { UserStore } from "../ports/user.store";
 import { GetUserByIdQuery } from "../queries/get-user.query";
 
