@@ -2,7 +2,6 @@ import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CreateUserCommand } from "../../../../application/commands/create-user.command";
 import { GetUserByIdQuery } from "../../../../application/queries/get-user.query";
-
 import { User } from "../models/user";
 import { UserInput } from "../models/user.input";
 

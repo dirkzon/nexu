@@ -1,7 +1,7 @@
 import { Controller } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { Ctx, EventPattern, Payload, RmqContext } from "@nestjs/microservices";
-import { UserCreatedCommand } from "src/application/commands/user-created.command";
+import { UserCreatedCommand } from "../../../../application/commands/user-created.command";
 import { UserCreatedInput } from "../models/user-created.input";
 
 //{"pattern": "user-created", "data": {"name": "me", "id":"123", "password":"pass", "email":"email"}}
