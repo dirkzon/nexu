@@ -18,8 +18,9 @@ export function GraphQLConfig(): ApolloGatewayDriverConfig {
             logger: console,
             subgraphHealthCheck: true,
             subgraphs: [
-              { name: 'posts', url: 'http://localhost:3000/graphql' },
-              { name: 'auth', url: 'http://localhost:4000/graphql' },
+              { name: 'posts', url: 'http://post-service:3000/graphql' },
+              { name: 'auth', url: 'http://auth-service:4000/graphql' },
+              { name:'users', url: 'http://user-service:2000/graphql' },
             ],
           }),
         },

@@ -5,7 +5,9 @@ import { ImageEntity, ImageSchema } from "./models/image.schema";
 const { NODE_ENV } = process.env;
 
 export function MongoOptionsConfig(): string {
-    return "mongodb://post-mongo/post-service";
+    return NODE_ENV === 'prod' ? 
+    "mongodb://post-mongo/auth-service" :
+    "mongodb://localhost/auth-service";
 }
 
 export function MongoFeatureConfig(): ModelDefinition[] {

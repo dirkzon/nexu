@@ -1,14 +1,18 @@
 import { ClientProviderOptions } from "@nestjs/microservices/module/interfaces/clients-module.interface";
 
-const { SERVICE, MESSAGEBUS_URL, MESSAGEBUS_QUEUE } = process.env;
+const { NODE_ENV } = process.env;
+
+const url = NODE_ENV === 'prod' ? 
+'amqp://guest:guest@rabbitmq:5672/' :
+'amqp://guest:guest@localhost:5672/';
 
 export function RabbitConfig(): Array<ClientProviderOptions> {
   return [
   { 
-    name: `USER_SERVICE`,
+    name: `USER_SERVICE`, 
     transport: 5, //Transport.RMQ
     options: {
-      urls: ['amqp://guest:guest@rabbitmq:5672/'],
+      urls: [url],
       noAck: false,
       queue: `user_queue`,
       queueOptions: {
@@ -17,4 +21,9 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
       },
     },
   ];
+}
+
+// Connection to microservices
+export function MicroserviceConfig() {
+
 }

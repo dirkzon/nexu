@@ -1,23 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { MicroserviceConfig } from './infrastructure/adaptors/RabbitMQ/config';
 
-const { SERVICE, MESSAGEBUS_URL, MESSAGEBUS_QUEUE } = process.env;
+const { SERVICE } = process.env;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.connectMicroservice({
-    logger: console,
-    transport: Transport.RMQ,
-    options: { 
-        urls: [MESSAGEBUS_URL],
-        noAck: false,
-        queue: `${MESSAGEBUS_QUEUE}`,
-        queueOptions: { 
-          durable: true,
-          },
-        },
-  }); 
+  app.connectMicroservice(MicroserviceConfig()); 
 
   await app.startAllMicroservices();
   await app.listen(4000).then(() => console.log(`${SERVICE} started`));

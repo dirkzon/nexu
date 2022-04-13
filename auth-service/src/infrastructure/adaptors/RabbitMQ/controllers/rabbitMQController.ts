@@ -10,15 +10,18 @@ import { UserCreatedInput } from "../models/user-created.input";
 export class RabbitMQController {
     constructor(private readonly commandBus: CommandBus) {}
 
-    @EventPattern('user-created')
+    @EventPattern('user_created')
     async UserCreated(@Payload() data: UserCreatedInput, @Ctx() context: RmqContext) {
+        console.log(data);
+        console.log('Recieved user-created event');
         await this.commandBus.execute(new UserCreatedCommand(
             data.id, 
             data.name, 
             data.email, 
             data.password,
-        ));
-        const originalMsg = context.getMessage();
-        context.getChannelRef().ack(originalMsg);
+        )).catch((e) => {
+            context.getChannelRef().reject(e, false);
+        });
+        context.getChannelRef().ack(context.getMessage());
     }
 }
