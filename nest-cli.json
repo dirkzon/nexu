@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "nexu": {
+      "type": "library",
+      "root": "libs/nexu",
+      "entryFile": "index",
+      "sourceRoot": "libs/nexu/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nexu/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}

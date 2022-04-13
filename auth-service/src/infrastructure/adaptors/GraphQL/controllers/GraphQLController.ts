@@ -1,6 +1,6 @@
 import { CommandBus } from "@nestjs/cqrs";
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
-import { LoginCommand } from "src/application/commands/login.command";
+import { LoginCommand } from "../../../../application/commands/login.command";
 import { AuthData } from "../models/AuthData";
 
 @Resolver(() => AuthData)

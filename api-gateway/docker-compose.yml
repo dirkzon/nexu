@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  gateway-service:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    ports:
+      - 5000:5000
+
+networks:
+  default: 
+      name: nexu_network

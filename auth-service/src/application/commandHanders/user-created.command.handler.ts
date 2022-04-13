@@ -1,9 +1,9 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
-import { ValidateClass } from "src/infrastructure/services/validator";
 import { UserCreatedCommand } from "../commands/user-created.command";
 import { AuthStore } from "../ports/AuthStore";
 import * as bcrypt from 'bcrypt';
-import { User } from "src/domain/models/user";
+import { ValidateClass } from "../../infrastructure/services/validator";
+import { User } from "../../domain/models/user";
 
 @CommandHandler(UserCreatedCommand)
 export class UserCreatedCommandHandler implements ICommandHandler<UserCreatedCommand> {
