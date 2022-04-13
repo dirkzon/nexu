@@ -1,7 +1,7 @@
 import { Controller, Inject } from '@nestjs/common';
 import { MessagePattern, Payload, Ctx, RmqContext } from '@nestjs/microservices';
 import { QueryBus } from '@nestjs/cqrs';
-import { GetPostByIdQuery } from 'src/application/queries/get-post-by-id.query';
+import { GetPostByIdQuery } from '../../../../application/queries/get-post-by-id.query';
 
 @Controller()
 export class RabbitMQController {

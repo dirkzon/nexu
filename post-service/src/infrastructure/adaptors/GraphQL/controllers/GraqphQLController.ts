@@ -1,7 +1,7 @@
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { Resolver, Query, Args, Mutation,  } from "@nestjs/graphql";
-import { CreatePostCommand } from "src/application/commands/create-post.command";
-import { GetPostByIdQuery } from "src/application/queries/get-post-by-id.query";
+import { CreatePostCommand } from "../../../../application/commands/create-post.command";
+import { GetPostByIdQuery } from "../../../../application/queries/get-post-by-id.query";
 import { Post } from "../models/post";
 import { PostInput } from "../models/post.input";
 

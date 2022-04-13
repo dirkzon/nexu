@@ -1,10 +1,10 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
-import { ValidateClass } from "src/infrastructure/services/validator";
 import { LoginCommand } from "../commands/login.command";
 import {JwtService} from '@nestjs/jwt'
-import { AuthData } from "src/domain/models/auth";
 import { AuthStore } from "../ports/AuthStore";
 import * as bcrypt from 'bcrypt';
+import { ValidateClass } from "../../infrastructure/services/validator";
+import { AuthData } from "../../domain/models/auth";
 
 @CommandHandler(LoginCommand)
 export class LoginCommandHandler implements ICommandHandler<LoginCommand> {

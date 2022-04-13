@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { User } from "src/domain/models/User";
+import { User } from "../../domain/models/User";
 
 @Injectable()
 export abstract class UserStore {

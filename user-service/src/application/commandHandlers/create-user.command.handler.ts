@@ -1,9 +1,9 @@
 import { CommandHandler, EventBus, ICommandHandler } from "@nestjs/cqrs";
-import { ValidateClass } from "src/infrastructure/services/validator";
 import { CreateUserCommand } from "../commands/create-user.command";
 import { UserStore } from "../ports/user.store";
 import { v4 } from "uuid";
 import { UserCreatedEvent } from "../events/user-created.event";
+import { ValidateClass } from "../../infrastructure/services/validator";
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
