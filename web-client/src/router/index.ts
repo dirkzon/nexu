@@ -14,6 +14,11 @@ const routes: Array<RouteConfig> = [
     name: "register",
     component: () => import("../views/RegisterPage.vue"),
   },
+  {
+    path: "/home",
+    name: "home",
+    component: () => import("../views/HomePage.vue"),
+  },
 ];
 
 const router = new VueRouter({
