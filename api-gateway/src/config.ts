@@ -20,6 +20,11 @@ export function GraphQLConfig(): ApolloGatewayDriverConfig {
     return {
         driver: ApolloGatewayDriver,
         server: {
+          cors: {
+            origin: "*",
+            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+            preflightContinue: false,
+          },
           logger: console,
           playground: true,
         },

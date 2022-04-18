@@ -20,9 +20,10 @@
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  mounted () {
+    if(!this.$cookies.get("access_token")) {
+      this.$router.push("/login");
+    }
+  }
 };
 </script>
