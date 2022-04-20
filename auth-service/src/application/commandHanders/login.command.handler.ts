@@ -21,11 +21,12 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand> {
             bcrypt.compare(command.password, user.passwordHash, (err, isMatch) => {
                 if (err) throw err;
                 if (isMatch) {
-                    const payload = { user_name: user.name, id: user.id }
+                    const scope = command.scope.join(' ');
+                    const payload = { user_name: user.name, id: user.id, scope: scope }
                     return resolve({
                         accessToken: this.jwtService.sign(payload),
                         tokenType: "Bearer",
-                        scope: "",
+                        scope: scope,
                     });
                 };
                 return reject('Incorrect username/email or password');

@@ -1,5 +1,5 @@
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { Resolver, Query, Args, Mutation,  } from "@nestjs/graphql";
+import { Resolver, Query, Args, Mutation, Context,  } from "@nestjs/graphql";
 import { CreatePostCommand } from "../../../../application/commands/create-post.command";
 import { GetPostByIdQuery } from "../../../../application/queries/get-post-by-id.query";
 import { Post } from "../models/post";
@@ -18,7 +18,10 @@ export class GraphQLController {
     }
 
     @Mutation(() => Post)
-    async CreatePost(@Args({name: 'post_input', type: () => PostInput}) input: PostInput) {
-        return await this.commandBus.execute(new CreatePostCommand(input.createdBy, input.description));
+    async CreatePost(
+        @Args({name: 'new_post', type: () => PostInput}) input: PostInput,
+        @Context() context
+    ) {
+        return await this.commandBus.execute(new CreatePostCommand(context.user.id, input.description));
     }
 }
