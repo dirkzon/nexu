@@ -1,4 +1,4 @@
-import { rule, shield, and, chain } from "graphql-shield";
+import { rule, shield, and } from "graphql-shield";
 
 enum Scopes {
     CAN_MAKE_POST = "create:post"
@@ -17,6 +17,6 @@ export const permissions = shield({
         GetPostById: isAuthenticated,
     },
     Mutation: {
-        CreatePost: chain(isAuthenticated, canMakePost),
+        CreatePost: and(isAuthenticated, canMakePost),
     }
   });
