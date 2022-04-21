@@ -1,5 +1,5 @@
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CreateUserCommand } from "../../../../application/commands/create-user.command";
 import { GetUserByIdQuery } from "../../../../application/queries/get-user.query";
 import { User } from "../models/user";
@@ -15,6 +15,11 @@ export class GraphQLController {
     @Query(() => User)
     async GetUserById(@Args({ name: 'id', type: () => String }) id: string) {
         return await this.queryBus.execute(new GetUserByIdQuery(id));
+    }
+
+    @Query(() => User)
+    async getSelf(@Context() context) {
+        return await this.queryBus.execute(new GetUserByIdQuery(context.user.id));
     }
 
     @Mutation(() => User)

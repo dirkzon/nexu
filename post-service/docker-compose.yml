@@ -16,7 +16,7 @@ services:
       - ./data/db:/data/db
       - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
     ports:
-      - '27010:27010'
+      - '27017:27017'
 
 networks:
   default: 
