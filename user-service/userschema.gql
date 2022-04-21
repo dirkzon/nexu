@@ -35,6 +35,7 @@ scalar DateTime
 
 type Query {
   GetUserById(id: String!): User!
+  getSelf: User!
 }
 
 type Mutation {
