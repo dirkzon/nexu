@@ -1,6 +1,7 @@
 import { ActionTree } from "vuex";
 import { UserState } from "./types";
 import axios from "axios";
+import Vue from "vue";
 
 export const actions: ActionTree<UserState, any> = {
     async Authorize(state, {user, pass}): Promise<any> {
@@ -26,8 +27,8 @@ export const actions: ActionTree<UserState, any> = {
                 if (result.data.errors) {
                     throw new Error(result.data.errors[0].message);
                 }
-                console.log(result.data.data.login)
-                state.commit("SET_AUTH", result.data.data.login.accessToken);
+                console.log(result.data.data.login.accessToken)
+                state.commit("SET_AUTH", result.data.data.login);
             }).catch((err) => {
                 console.log(err);
                 throw err;
@@ -59,6 +60,35 @@ export const actions: ActionTree<UserState, any> = {
     },
 
     async GetSelf(state): Promise<any> {
-        console.log("yeet")
+        const token = Vue.$cookies.get("access_token");
+        await axios({
+            url: 'http://localhost:5000/graphql',
+            method: 'post',
+            headers:{
+                "user": token
+            },
+            data: {
+                query: `
+                    query {
+                        getSelf{
+                            name,
+                            avatar{
+                              url,
+                              height,
+                              width,
+                            }
+                          }
+                    }
+                    `
+            }
+        }).then((result) => {
+            if (result.data.errors) {
+                throw new Error(result.data.errors[0].message);
+            }
+            state.commit("SET_ACCOUNT", result.data.data.getSelf)
+        }).catch((err) => {
+            console.log(err);
+            throw err;
+        });
     },
 }
