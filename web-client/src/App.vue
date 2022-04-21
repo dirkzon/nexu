@@ -10,6 +10,7 @@
           alt="Nexu logo"
         />
       </div>
+      <account-menu></account-menu>
     </v-app-bar>
     <v-main>
       <router-view align="center" />
@@ -18,12 +19,16 @@
 </template>
 
 <script>
+import AccountMenu from "./components/AccountMenu.vue"
 export default {
   name: "App",
+  components: {
+    AccountMenu,
+  },
   mounted () {
     if(!this.$cookies.get("access_token")) {
       this.$router.push("/login");
     }
-  }
+  },
 };
 </script>

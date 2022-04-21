@@ -28,9 +28,9 @@ export class GraphQLController {
             new CreateUserCommand(
                 new_user.name, 
                 new_user.email,
-                 new_user.bio, 
-                 new_user.password
-                 )
+                new_user.bio, 
+                new_user.password
+            )
         );
     }
 }

@@ -6,5 +6,10 @@ export const mutations: MutationTree<UserState> = {
     SET_AUTH(state, payload) {
         const token = `${payload.tokenType}:${payload.accessToken}`;
         Vue.$cookies.set("access_token", token);
+    },
+
+    SET_ACCOUNT(state, payload) {
+        state.profile.image = payload.avatar.url;
+        state.profile.name = payload.name;
     }
 }
