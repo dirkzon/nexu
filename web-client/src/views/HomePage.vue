@@ -6,7 +6,7 @@
       <post-thumbnail v-bind:post="mock_post"> </post-thumbnail>
       <post-thumbnail v-bind:post="mock_post2"> </post-thumbnail>
       <post-thumbnail v-bind:post="mock_post2"> </post-thumbnail>
-      <post-thumbnail v-bind:post="mock_post"> </post-thumbnail>
+      <post-thumbnail> </post-thumbnail>
     </v-row>
   </v-container>
 </template>
@@ -33,6 +33,7 @@ export default Vue.extend(
           }
         ],
         createdBy: {
+          url:"https://git.fhict.nl/I438220/nexu",
           name:"Peter",
           id: "1234",
           avatar: {
@@ -53,6 +54,7 @@ export default Vue.extend(
           }
         ],
         createdBy: {
+          url:"https://git.fhict.nl/I438220/nexu",
           name:"Henk",
           id: "1234",
           avatar: {

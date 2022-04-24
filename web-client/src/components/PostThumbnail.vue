@@ -1,37 +1,52 @@
 <template>
     <v-card width="320px" class="ma-8">
-        <div class="text-overline pa-2 text-sm-left">
+      <!-- avatar -->
+      <div class="pa-2 text-sm-left" 
+        v-if="!isLoading">
         <v-avatar size="32">
           <img :src="post.createdBy.avatar.url">
         </v-avatar>
-        {{post.createdBy.name}}
+        <a class="text-overline black--text text-decoration-none" 
+        :href="post.createdBy.url"> 
+          {{post.createdBy.name}} 
+        </a>
       </div>
-      <a :href="post.url">
-        <v-img
-          :aspect-ratio="3/4"
-          height="300px"
-          :src="post.images[0].url"
-        ></v-img> 
-      </a>
-      <!-- <v-carousel
-      :continuous="false"
-      hide-delimiters
-      height="250"
-      >
-        <v-carousel-item
-          v-for="(image, i) in post.images"
-          :key="i"
-          :src="image.url"
-        >
-        </v-carousel-item>
-      </v-carousel> -->
-
+      <div v-else>
+        <v-skeleton-loader
+          :boilerplate="true"
+          type="list-item-avatar"
+        ></v-skeleton-loader>
+      </div>
+      <!-- image -->
+      <div 
+        v-if="!isLoading">
+        <a :href="post.url">
+          <v-img
+            :aspect-ratio="3/4"
+            height="300px"
+            :src="post.images[0].url"
+          ></v-img>
+        </a>
+      </div>
+      <div v-else>
+        <v-skeleton-loader
+          type="image"
+          tile
+        ></v-skeleton-loader>
+        <v-skeleton-loader
+          height="100px"
+          type="image"
+          tile
+        ></v-skeleton-loader>
+      </div>
+      <!-- actions -->
       <div class="pa-2">
         <div class="text-sm-left">
           <v-btn
-              @click="setLike()"
-              icon
-              small>
+            :disabled="isLoading"
+            @click="setLike()"
+            icon
+            small>
             <v-icon v-if="this.like" color="red">
               mdi-heart
             </v-icon>
@@ -40,6 +55,7 @@
             </v-icon>
           </v-btn>
           <v-btn 
+            :disabled="isLoading" 
             small
             icon
             @click="createComment()">
@@ -48,10 +64,19 @@
             </v-icon>
           </v-btn>
         </div>
-        <div class="text-sm-left">
+        <!-- attributes -->
+        <div class="text-sm-left" v-if="!isLoading">
           <v-card-text class="pa-1">
             {{post.likes}} likes
           </v-card-text>
+        </div>
+        <div v-else>
+          <v-skeleton-loader
+            class="ma-0"
+            height="32px"
+            :boilerplate="true"
+            type="list-item"
+          ></v-skeleton-loader>
         </div>
       </div>
     </v-card>
@@ -78,5 +103,10 @@ export default Vue.extend({
       console.log("to be implemented");
     },
   },
+  computed: {
+    isLoading: function () {
+      return !this.post;
+    },
+  }
 });
 </script>
