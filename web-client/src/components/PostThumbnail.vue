@@ -8,7 +8,7 @@
         </v-avatar>
         <a class="text-overline black--text text-decoration-none" 
         :href="post.createdBy.url"> 
-          {{post.createdBy.name}} 
+          {{ post.createdBy.name | truncate(20) }}
         </a>
       </div>
       <div v-else>
@@ -91,12 +91,11 @@ export default Vue.extend({
     like: false,
   }),
   mounted () {
-    this.like = this.post.liked
+    this.like = this.post.liked;
   },
   methods: {
     setLike: async function () {
       this.like = !this.like;
-      console.log(this.like);
       // await this.$store.dispatch("setLikeOnPost", { post_id: this.post.id, like: this.like });
     },
     createComment: async function () {

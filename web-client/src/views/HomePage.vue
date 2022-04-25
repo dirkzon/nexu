@@ -34,14 +34,14 @@ export default Vue.extend(
         ],
         createdBy: {
           url:"https://git.fhict.nl/I438220/nexu",
-          name:"Peter",
+          name:"peter",
           id: "1234",
           avatar: {
             url: "https://trendsinusa.com/wp-content/uploads/2018/01/Miniclip-8-Ball-Pool-Avatar-16.png"
           }
         },
         likes: 283,
-        liked: false,
+        liked: true,
         url: "https://git.fhict.nl/I438220/nexu",
       },
       mock_post2: {
