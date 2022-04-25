@@ -10,6 +10,9 @@ import VueCookies from "vue-cookies";
 
 Vue.config.productionTip = false;
 Vue.use(VueCookies);
+Vue.filter('truncate', function (text: string, stop: number, clamp: number) {
+  return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
+})
 
 new Vue({
   router,
