@@ -6,9 +6,10 @@
  The auth service handles all the logic regarding the authentication. The features are:
 
 - [x] create user
-- [ ] update user
-- [ ] delete user
+- [x] update user data
+- [x] delete user
 - [x] create token
+- [ ] update password
 
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest.js"/></a>

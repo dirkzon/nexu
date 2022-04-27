@@ -6,8 +6,9 @@
  The user service handles all the logic regarding the the users. The features are:
 
 - [x] create user
-- [ ] update user
-- [ ] delete user
+- [x] update user
+- [x] delete user
+- [ ] searching users
 
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest.js"/></a>
