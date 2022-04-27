@@ -2,7 +2,7 @@
   <img src="../docs/nexu_logo_with_name.svg" width="320" alt="Architect Logo" /></a>
 </p>
 
-# Auth service
+# User service
  The user service handles all the logic regarding the the users. The features are:
 
 - [x] create user
