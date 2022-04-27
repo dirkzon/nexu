@@ -72,6 +72,8 @@ export const actions: ActionTree<UserState, any> = {
                     query {
                         getSelf{
                             name,
+                            bio,
+                            email,
                             avatar{
                               url,
                               height,

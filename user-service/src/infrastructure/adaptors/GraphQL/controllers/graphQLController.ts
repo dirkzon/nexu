@@ -1,7 +1,9 @@
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CreateUserCommand } from "../../../../application/commands/create-user.command";
+import { UpdateUserCommand } from "../../../../application/commands/update-user.command";
 import { GetUserByIdQuery } from "../../../../application/queries/get-user.query";
+import { UpdateUserInput } from "../models/update-user.input";
 import { User } from "../models/user";
 import { UserInput } from "../models/user.input";
 
@@ -29,7 +31,19 @@ export class GraphQLController {
                 new_user.name, 
                 new_user.email,
                 new_user.bio, 
-                new_user.password
+                new_user.password,
+            )
+        );
+    }
+
+    @Mutation(() => User)
+    async UpdateSelf(@Args({ name: 'user', type: () => UpdateUserInput }) user: UpdateUserInput, 
+        @Context() context) {
+        return await this.commandBus.execute(
+            new UpdateUserCommand(
+                context.user.id,
+                user.name,
+                user.bio,
             )
         );
     }

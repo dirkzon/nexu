@@ -22,4 +22,7 @@ export const permissions = shield({
         GetUserById: chain(isAuthenticated, canGetOtherUsers),
         getSelf: chain(isAuthenticated, canGetSelf),
     },
+    Mutation: {
+        UpdateSelf: isAuthenticated,
+    }
   });

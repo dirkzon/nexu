@@ -7,7 +7,9 @@ import { UserState } from "./types";
 const initialState: UserState = {
     profile: {
         name: "",
-        image: ""
+        image: "",
+        bio: "",
+        email: "",
     }
 };
 
