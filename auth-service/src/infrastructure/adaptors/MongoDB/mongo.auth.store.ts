@@ -12,6 +12,17 @@ export class MongoAuthStore implements AuthStore {
         private readonly model: Model<AuthDocument>
     ) {}
 
+    async deleteUser(id: string): Promise<void> {
+        await this.model.findOneAndRemove({ id: id });
+        return Promise.resolve(undefined);
+    }
+
+    async updateUser(user: User): Promise<User> {
+        return Promise.resolve(
+            await this.model.findOneAndUpdate({ id: user.id }, user, { new: true }),
+          );
+    }
+
     async createUser(new_user: User): Promise<User> {
         const user = new this.model(new_user);
         return Promise.resolve(await user.save());

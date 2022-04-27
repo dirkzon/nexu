@@ -37,10 +37,9 @@ type Query {
 }
 
 type Mutation {
-  CreatePost(post_input: PostInput!): Post!
+  CreatePost(new_post: PostInput!): Post!
 }
 
 input PostInput {
-  createdBy: String!
   description: String!
 }

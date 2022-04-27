@@ -14,6 +14,6 @@ export class UserCreatedEventHandler implements IEventHandler<UserCreatedEvent> 
             timeout(5000), 
             catchError((err) => {
                 throw err;
-        })).toPromise();
+        }));
     }
 }

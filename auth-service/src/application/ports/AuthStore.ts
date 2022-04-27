@@ -6,4 +6,6 @@ export abstract class AuthStore {
     abstract getUserByData(user_data: string): Promise<User>;
     abstract getUserById(id: string): Promise<User>;
     abstract createUser(new_user: User): Promise<User>;
+    abstract updateUser(user: User): Promise<User>;
+    abstract deleteUser(id: string): Promise<void>;
 }

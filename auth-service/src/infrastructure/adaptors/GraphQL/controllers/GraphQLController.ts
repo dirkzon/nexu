@@ -11,8 +11,9 @@ export class GraphQLController {
     @Mutation(() => AuthData)
     async login(
         @Args({ name: 'user', type: () => String }) user: string,
-        @Args({ name: 'password', type: () => String }) password: string
+        @Args({ name: 'password', type: () => String }) password: string,
+        @Args({ name: 'scope', type: () => [String] }) scope: string[]
     ) {
-        return await this.commandBus.execute(new LoginCommand(user, password));
+        return await this.commandBus.execute(new LoginCommand(user, password, scope));
     }
 }

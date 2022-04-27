@@ -35,10 +35,13 @@ scalar DateTime
 
 type Query {
   GetUserById(id: String!): User!
+  getSelf: User!
 }
 
 type Mutation {
   CreateUser(new_user: UserInput!): User!
+  UpdateSelf(user: UpdateUserInput!): User!
+  DeleteSelf: Boolean!
 }
 
 input UserInput {
@@ -46,4 +49,9 @@ input UserInput {
   email: String!
   bio: String!
   password: String!
+}
+
+input UpdateUserInput {
+  name: String!
+  bio: String!
 }

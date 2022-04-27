@@ -19,5 +19,5 @@ type AuthData {
 }
 
 type Mutation {
-  login(user: String!, password: String!): AuthData!
+  login(user: String!, password: String!, scope: [String!]!): AuthData!
 }
