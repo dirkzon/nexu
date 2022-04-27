@@ -10,7 +10,7 @@ export class UserUpdatedEventHandler implements IEventHandler<UserUpdatedEvent>{
 
     async handle(event: UserUpdatedEvent) {
         console.log(`User with id:'${event.id}' updated`);
-        this.client.emit('user_updated', event).pipe(
+        this.client.emit('user-updated', event).pipe(
             timeout(5000), 
             catchError((err) => {
                 throw err;
