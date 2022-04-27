@@ -8,7 +8,7 @@
         </v-avatar>
         <a class="text-overline black--text text-decoration-none" 
         :href="post.createdBy.url"> 
-          {{ post.createdBy.name | truncate(20) }}
+          {{ post.createdBy.name | truncate(20) }} 
         </a>
       </div>
       <div v-else>
