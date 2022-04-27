@@ -1,6 +1,7 @@
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CreateUserCommand } from "../../../../application/commands/create-user.command";
+import { DeleteUserCommand } from "../../../../application/commands/delete-user.command";
 import { UpdateUserCommand } from "../../../../application/commands/update-user.command";
 import { GetUserByIdQuery } from "../../../../application/queries/get-user.query";
 import { UpdateUserInput } from "../models/update-user.input";
@@ -46,5 +47,16 @@ export class GraphQLController {
                 user.bio,
             )
         );
+    }
+
+    @Mutation(() => Boolean)
+    async DeleteSelf(@Context() context) {
+        return await this.commandBus.execute(
+            new DeleteUserCommand(context.user.id)
+        ).catch(() => {
+            return 0;
+        }).then(() => {
+            return 1
+        });
     }
 }

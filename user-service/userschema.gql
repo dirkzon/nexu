@@ -41,6 +41,7 @@ type Query {
 type Mutation {
   CreateUser(new_user: UserInput!): User!
   UpdateSelf(user: UpdateUserInput!): User!
+  DeleteSelf: Boolean!
 }
 
 input UserInput {

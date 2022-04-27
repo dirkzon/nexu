@@ -4,4 +4,5 @@ import { UserUpdatedEventHandler } from "./user-updated.event.handler";
 export const EventsHandlers = [
     UserCreatedEventHandler,
     UserUpdatedEventHandler,
+    UserUpdatedEventHandler,
 ]

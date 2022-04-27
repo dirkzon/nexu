@@ -12,6 +12,11 @@ export class MongoUserStore implements UserStore {
         private readonly model: Model<UserDocument>
     ) {}
 
+    async DeleteUser(id: string): Promise<void> {
+        await this.model.findOneAndRemove({ id: id });
+        return Promise.resolve(undefined);
+    }
+
     async UpdateUser(user: User): Promise<User> {
         return Promise.resolve(
             await this.model.findOneAndUpdate({ id: user.id }, user, { new: true }),
