@@ -24,5 +24,6 @@ export const permissions = shield({
     },
     Mutation: {
         UpdateSelf: isAuthenticated,
+        DeleteSelf: isAuthenticated
     }
   });
