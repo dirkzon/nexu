@@ -6,7 +6,6 @@ import { UserStore } from "../ports/user.store";
 
 @CommandHandler(DeleteUserCommand)
 export class DeleteUserCommandHandler implements ICommandHandler<DeleteUserCommand> {
-
     constructor(
         readonly userStore: UserStore,
         readonly eventBus: EventBus,

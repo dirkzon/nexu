@@ -5,7 +5,7 @@ import { catchError, timeout } from "rxjs";
 import { UserDeletedEvent } from "../events/user-deleted.event";
 
 @EventsHandler(UserDeletedEvent)
-export class UserCreatedEventHandler implements IEventHandler<UserDeletedEvent>{
+export class UserDeletedEventHandler implements IEventHandler<UserDeletedEvent>{
     constructor(@Inject('USER_SERVICE') readonly client: ClientProxy) {}
 
     async handle(event: UserDeletedEvent) {
