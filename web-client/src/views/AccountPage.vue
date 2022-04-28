@@ -81,12 +81,12 @@ export default Vue.extend(
         user_bio: "",
         formValid: false,
         name_rules: [
-            (value) => !!value || "Name is required",
-            (value) => value.length > 2 || "Name must be longer than 2 characters",
-            (value) => value.length < 20 || "Name must be shorter than 20 characters",
+            (value: string) => !!value || "Name is required",
+            (value: string) => value.length > 2 || "Name must be longer than 2 characters",
+            (value: string) => value.length < 20 || "Name must be shorter than 20 characters",
         ],
         bio_rules: [
-            (value) => value.length < 60 || "Name must be shorter than 60 characters",
+            (value: string) => value.length < 60 || "Name must be shorter than 60 characters",
         ],
      }),
      methods: {

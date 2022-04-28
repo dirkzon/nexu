@@ -5,7 +5,7 @@ import Vue from "vue";
 
 export const actions: ActionTree<UserState, any> = {
     async Authorize(state, {user, pass}): Promise<any> {
-        const scope = ["get:self", "get:other-users"];
+        const scope = ["get:self", "get:others", "search:others"];
         await axios({
             url: 'http://localhost:5000/graphql',
             method: 'post',
@@ -92,5 +92,44 @@ export const actions: ActionTree<UserState, any> = {
             console.log(err);
             throw err;
         });
+    },
+
+    async searchUsers(state, {query, pagination}): Promise<any> {
+        const token = Vue.$cookies.get("access_token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: 'http://localhost:5000/graphql',
+                method: 'post',
+                headers:{
+                    "user": token
+                },
+                data: {
+                    query: `
+                        query {
+                            SearchUsers(
+                                search: {query: "${query}"}, 
+                                    pagination: { 
+                                        first: ${pagination.first}, 
+                                        from: ${pagination.from}
+                                    }) {
+                                name,
+                                id,
+                                avatar {
+                                    url
+                                }
+                            }
+                        }
+                        `
+                }
+            }).then((result) => {
+                if (result.data.errors) {
+                    throw new Error(result.data.errors[0].message);
+                }
+                resolve(result.data.data.SearchUsers);
+            }).catch((err) => {
+                console.log(err);
+                reject(err);
+            });
+        })
     },
 }
