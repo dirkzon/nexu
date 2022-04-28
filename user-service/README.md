@@ -8,7 +8,9 @@
 - [x] create user
 - [x] update user
 - [x] delete user
-- [ ] searching users
+- [x] searching users
+- [ ] uploading avatar
+- [ ] updating avatar
 
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest.js"/></a>

@@ -4,6 +4,9 @@ import { CreateUserCommand } from "../../../../application/commands/create-user.
 import { DeleteUserCommand } from "../../../../application/commands/delete-user.command";
 import { UpdateUserCommand } from "../../../../application/commands/update-user.command";
 import { GetUserByIdQuery } from "../../../../application/queries/get-user.query";
+import { SearchUserQuery } from "../../../../application/queries/search-users.query";
+import { Pagination } from "../models/pagination";
+import { SearchUserInput } from "../models/search-user.input";
 import { UpdateUserInput } from "../models/update-user.input";
 import { User } from "../models/user";
 import { UserInput } from "../models/user.input";
@@ -58,5 +61,14 @@ export class GraphQLController {
         }).then(() => {
             return 1
         });
+    }
+
+    @Query(() => [User])
+    async SearchUsers(
+        @Args({ name: 'search', type: () => SearchUserInput }) query: SearchUserInput,
+        @Args({ name: 'pagination', type: () => Pagination }) pagination: Pagination) {
+        return await this.queryBus.execute(
+            new SearchUserQuery({first: pagination.first, from: pagination.from}, query.query)
+        );
     }
 }
