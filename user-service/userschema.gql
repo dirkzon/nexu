@@ -36,6 +36,16 @@ scalar DateTime
 type Query {
   GetUserById(id: String!): User!
   getSelf: User!
+  SearchUsers(search: SearchUserInput!, pagination: Pagination!): [User!]!
+}
+
+input SearchUserInput {
+  query: String!
+}
+
+input Pagination {
+  first: Float!
+  from: Float!
 }
 
 type Mutation {

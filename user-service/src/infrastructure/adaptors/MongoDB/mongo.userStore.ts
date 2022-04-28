@@ -4,6 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { UserDocument, UserEntity } from "./models/user.schema";
 import { User } from "../../../domain/models/User";
 import { UserStore } from "../../../application/ports/user.store";
+import { Pagination } from "../../../domain/models/Pagination";
 
 @Injectable()
 export class MongoUserStore implements UserStore {
@@ -11,6 +12,12 @@ export class MongoUserStore implements UserStore {
         @InjectModel(UserEntity.name) 
         private readonly model: Model<UserDocument>
     ) {}
+
+    async SearchUsers(query: string, pagination: Pagination): Promise<User[]> {
+        return this.model.find({ name: { $regex: query, $options: 'i'} })
+        .skip(pagination.from)
+        .limit(pagination.first);
+    }
 
     async DeleteUser(id: string): Promise<void> {
         await this.model.findOneAndRemove({ id: id });
