@@ -1,29 +1,35 @@
 <template>
     <div>
-        <v-text-field
-            v-model="query"
-            label="Search for users..."
-            hide-details="auto"
-            background-color="white"
-            rounded
-            dense
-            solo
-            type="text"
-            clearable
-            @input="search()"
-            ><v-icon slot="append" color="accent"> mdi-account-search </v-icon>
-        </v-text-field>
-        <v-list v-if="results.length > 0">
-            <v-list-item
-            v-for="item in results"
-            :key="item.id"
-            >
-            <v-list-item-title>
-                <user-card v-bind:user="item">
-                </user-card>
-            </v-list-item-title>
-            </v-list-item>
-        </v-list>
+        <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+                <v-text-field
+                    v-model="query"
+                    label="Search for users..."
+                    hide-details="auto"
+                    background-color="white"
+                    dense
+                    solo
+                    type="text"
+                    clearable
+                    @input="search()"
+                    v-on="on"
+                    class="shrink"
+                    ><v-icon slot="append" color="accent"> mdi-account-search </v-icon>
+                </v-text-field>
+            </template>
+            <v-list v-if="results[0] === 'empty'">
+                 <v-list-item>
+                    <div> No users found... </div>
+                </v-list-item>
+            </v-list>
+            <v-list v-else-if="results.length > 0">
+                <v-list-item
+                v-for="item in results"
+                :key="item.id">
+                    <user-card v-bind:user="item"></user-card>
+                </v-list-item>
+            </v-list>
+        </v-menu>
     </div>
 </template>
 
@@ -47,10 +53,13 @@ export default Vue.extend({
           if(this.query !== "") {
             await this.$store.dispatch(
                 "searchUsers", 
-                { query: this.query, pagination: { first: 8, from: 0} })
+                { query: this.query, pagination: { first: 5, from: 0} })
                 .then((response) => {
-                    this.results = response;
-                    console.log(response);
+                    if (response.length === 0) {
+                        this.results = ["empty"]
+                    } else {
+                        this.results = response;
+                    }
                 });
           } else {
               this.results = [];
