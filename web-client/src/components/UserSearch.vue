@@ -24,9 +24,10 @@
             </v-list>
             <v-list v-else-if="results.length > 0">
                 <v-list-item
-                v-for="item in results"
-                :key="item.id">
-                    <user-card v-bind:user="item"></user-card>
+                v-for="user in results"
+                :key="user.id"
+                :to="{name: 'user', params: {id: user.id}}">
+                    <user-card v-bind:user="user"></user-card>
                 </v-list-item>
             </v-list>
         </v-menu>
@@ -64,7 +65,10 @@ export default Vue.extend({
           } else {
               this.results = [];
           }
-      }
+      },
+      routeToUser: function (id) {
+          this.$router.push({name: "user", params: {id: id}})
+      },
   }
 });
 </script>
