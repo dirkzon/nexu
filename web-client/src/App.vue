@@ -10,6 +10,7 @@
           alt="Nexu logo"
         />
       </div>
+      <user-search></user-search>
       <account-menu></account-menu>
     </v-app-bar>
     <v-main>
@@ -20,10 +21,12 @@
 
 <script>
 import AccountMenu from "./components/AccountMenu.vue"
+import UserSearch from "./components/UserSearch.vue"
 export default {
   name: "App",
   components: {
     AccountMenu,
+    UserSearch,
   },
   mounted () {
     if(!this.$cookies.get("access_token")) {

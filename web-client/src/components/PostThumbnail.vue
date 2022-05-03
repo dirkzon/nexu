@@ -2,14 +2,8 @@
     <v-card width="320px" class="ma-8">
       <!-- avatar -->
       <div class="pa-2 text-sm-left" 
-        v-if="!isLoading">
-        <v-avatar size="32">
-          <img :src="post.createdBy.avatar.url">
-        </v-avatar>
-        <a class="text-overline black--text text-decoration-none" 
-        :href="post.createdBy.url"> 
-          {{ post.createdBy.name | truncate(20) }} 
-        </a>
+        v-if="!loading">
+        <user-card v-bind:user="post.createdBy"> </user-card>
       </div>
       <div v-else>
         <v-skeleton-loader
@@ -18,17 +12,17 @@
         ></v-skeleton-loader>
       </div>
       <!-- image -->
-      <div 
-        v-if="!isLoading">
+      <div>
         <a :href="post.url">
           <v-img
+            @load="setLoading"
             :aspect-ratio="3/4"
-            height="300px"
+            :height="loading ? '0' : '300px'"
             :src="post.images[0].url"
           ></v-img>
         </a>
       </div>
-      <div v-else>
+      <div v-if="loading">
         <v-skeleton-loader
           type="image"
           tile
@@ -43,29 +37,29 @@
       <div class="pa-2">
         <div class="text-sm-left">
           <v-btn
-            :disabled="isLoading"
+            :disabled="loading"
             @click="setLike()"
             icon
             small>
             <v-icon v-if="this.like" color="red">
               mdi-heart
             </v-icon>
-            <v-icon v-else>
+            <v-icon v-else color="accent">
               mdi-heart-outline
             </v-icon>
           </v-btn>
           <v-btn 
-            :disabled="isLoading" 
+            :disabled="loading" 
             small
             icon
             @click="createComment()">
-            <v-icon>
+            <v-icon color="accent">
               mdi-comment-outline
             </v-icon>
           </v-btn>
         </div>
         <!-- attributes -->
-        <div class="text-sm-left" v-if="!isLoading">
+        <div class="text-sm-left" v-if="!loading">
           <v-card-text class="pa-1">
             {{post.likes}} likes
           </v-card-text>
@@ -84,12 +78,18 @@
 
 <script>
 import Vue from "vue";
+import UserCard from "../components/UserCard.vue"
+
 export default Vue.extend({
   name: "PostThumbnail",
   props: ["post"],
   data: () => ({
     like: false,
+    loading: true,
   }),
+  components: {
+    UserCard,
+  },
   mounted () {
     this.like = this.post.liked;
   },
@@ -101,11 +101,9 @@ export default Vue.extend({
     createComment: async function () {
       console.log("to be implemented");
     },
+    setLoading: function() {
+      this.loading = false;
+    }
   },
-  computed: {
-    isLoading: function () {
-      return !this.post;
-    },
-  }
 });
 </script>
