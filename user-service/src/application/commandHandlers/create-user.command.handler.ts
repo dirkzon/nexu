@@ -4,6 +4,7 @@ import { UserStore } from '../ports/user.store';
 import { v4 } from 'uuid';
 import { UserCreatedEvent } from '../events/user-created.event';
 import { ValidateClass } from '../../infrastructure/services/validator';
+import { User } from '../../domain/models/User';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler
@@ -11,7 +12,7 @@ export class CreateUserCommandHandler
 {
   constructor(readonly userStore: UserStore, readonly eventBus: EventBus) {}
 
-  async execute(command: CreateUserCommand): Promise<any> {
+  async execute(command: CreateUserCommand): Promise<User> {
     await ValidateClass(command);
     return await this.userStore
       .CreateUser({

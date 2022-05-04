@@ -45,9 +45,10 @@ describe('Create user command handler tests', () => {
       'this is my bio',
       'password123!',
     );
-    await createUserCommandHandler.execute(command);
+    const user = await createUserCommandHandler.execute(command);
     expect(userStore.CreateUser).toHaveBeenCalledTimes(1);
     expect(eventBusSpy).toHaveBeenCalledTimes(1);
+    expect(user).toBeDefined();
   });
 
   it('Create user with too short name', async () => {
