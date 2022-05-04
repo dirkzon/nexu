@@ -4,7 +4,7 @@ import { DeleteUserCommand } from '../commands/delete-user.command';
 import { UserStore } from '../ports/user.store';
 import { DeleteUserCommandHandler } from './delete-user.command.handler';
 
-describe('delete user command handler tests', () => {
+describe('Delete user command handler tests', () => {
   let userStore: UserStore;
   let eventBusSpy: jest.SpyInstance;
   let deleteUserCommandHandler: DeleteUserCommandHandler;

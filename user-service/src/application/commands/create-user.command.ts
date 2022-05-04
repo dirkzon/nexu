@@ -1,15 +1,18 @@
 import { ICommand } from '@nestjs/cqrs';
-import { IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateUserCommand implements ICommand {
+  @IsNotEmpty()
   @IsString()
   @Length(2, 20)
   name: string;
+  @IsNotEmpty()
   @IsString()
   email: string;
   @IsString()
   @Length(0, 60)
   bio: string;
+  @IsNotEmpty()
   @IsString()
   password: string;
 
