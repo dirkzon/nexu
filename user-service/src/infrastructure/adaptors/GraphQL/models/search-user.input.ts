@@ -1,7 +1,7 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class SearchUserInput {
-    @Field()
-    query: string;
+  @Field()
+  query: string;
 }

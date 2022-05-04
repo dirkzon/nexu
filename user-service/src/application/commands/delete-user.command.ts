@@ -1,11 +1,12 @@
-import { ICommand } from "@nestjs/cqrs";
-import { IsString } from "class-validator";
+import { ICommand } from '@nestjs/cqrs';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class DeleteUserCommand implements ICommand {
-    @IsString()
-    id: string;
+  @IsString()
+  @IsNotEmpty()
+  id: string;
 
-    constructor(id: string) {
-        this.id = id;
-    }
+  constructor(id: string) {
+    this.id = id;
+  }
 }
