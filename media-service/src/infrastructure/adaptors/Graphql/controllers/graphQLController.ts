@@ -10,30 +10,25 @@ export class GraphQLController {
 
   @Mutation(() => Boolean)
   async uploadFile(
-    @Args({ name: 'file', type: () => GraphQLUpload })
-    upload: FileUpload,
+    @Args({ name: 'files', type: () => [GraphQLUpload] })
+    uploads: FileUpload[],
   ) {
-    const { filename, encoding, mimetype, createReadStream } = upload.file;
-
-    const rs: ReadStream = await createReadStream();
-    const buff = Array<any>();
-    rs.on('data', (chunk) => buff.push(chunk));
-    rs.on('end', async () => {
-      this.commandBus
-        .execute(
+    uploads.forEach(async (upload) => {
+      const { filename, encoding, mimetype, createReadStream } =
+        await upload.promise;
+      const rs: ReadStream = await createReadStream();
+      const buff = Array<any>();
+      rs.on('data', (chunk) => buff.push(chunk));
+      rs.on('end', async () => {
+        this.commandBus.execute(
           new UploadImageCommand(
             filename,
             encoding,
             mimetype,
             Buffer.concat(buff),
           ),
-        )
-        .then(() => {
-          return true;
-        })
-        .catch(() => {
-          return false;
-        });
+        );
+      });
     });
   }
 }
