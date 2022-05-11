@@ -9,9 +9,12 @@ import { MediaStore } from './application/ports/mediaStore';
 import { AzureBlobStore } from './infrastructure/adaptors/Azure/AzureBlobStore';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CommandHandlers } from './application/commandHandlers';
+import { ClientsModule } from '@nestjs/microservices';
+import { RabbitConfig } from './infrastructure/adaptors/RabbitMQ/config';
 
 @Module({
   imports: [
+    ClientsModule.register(RabbitConfig()),
     CqrsModule,
     AzureStorageModule.withConfig(AzureConfig()),
     GraphQLModule.forRoot<ApolloFederationDriverConfig>(GraphQLConfig()),

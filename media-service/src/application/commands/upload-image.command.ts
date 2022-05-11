@@ -13,13 +13,18 @@ export class UploadImageCommand implements ICommand {
   mimetype: string;
   @IsNotEmpty()
   buffer: Buffer;
+  @IsString()
+  @IsNotEmpty()
+  postId: string;
 
   constructor(
+    postId: string,
     name: string,
     encoding: string,
     mimetype: string,
     buffer: Buffer,
   ) {
+    this.postId = postId;
     this.name = name;
     this.encoding = encoding;
     this.mimetype = mimetype;

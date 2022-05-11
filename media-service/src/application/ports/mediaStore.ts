@@ -3,5 +3,5 @@ import { ImageUpload } from '../../domain/models/imageUpload';
 
 @Injectable()
 export abstract class MediaStore {
-  abstract uploadImage(image: ImageUpload): Promise<boolean>;
+  abstract uploadImage(image: ImageUpload): Promise<string>;
 }

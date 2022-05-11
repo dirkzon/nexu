@@ -10,7 +10,7 @@ import { ImageUpload } from '../../../domain/models/imageUpload';
 export class AzureBlobStore implements MediaStore {
   constructor(private readonly azureStorage: AzureStorageService) {}
 
-  async uploadImage(image: ImageUpload): Promise<boolean> {
+  async uploadImage(image: ImageUpload): Promise<string> {
     const file: UploadedFileMetadata = {
       fieldname: image.name,
       originalname: image.id,
@@ -19,8 +19,6 @@ export class AzureBlobStore implements MediaStore {
       mimetype: image.mimetype,
       buffer: image.buffer,
     };
-    const test = await this.azureStorage.upload(file);
-    console.log(test);
-    return true;
+    return await this.azureStorage.upload(file);
   }
 }
