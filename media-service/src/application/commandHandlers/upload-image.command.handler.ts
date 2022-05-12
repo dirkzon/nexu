@@ -18,7 +18,7 @@ export class UploadImageCommandHandler
 
   async execute(command: UploadImageCommand): Promise<Image> {
     await ValidateClass(command);
-    const { buffer, width, height } = await resizeImage(command.buffer);
+    const { buffer, width, height } = await resizeImage(command.buffer, [3, 4]);
     const id = v4();
     return await this.mediaStore
       .uploadImage({
