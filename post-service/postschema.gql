@@ -24,7 +24,7 @@ type Post {
   description: String!
   createdAt: DateTime!
   createdBy: String!
-  images: Image!
+  images: [Image!]!
 }
 
 """

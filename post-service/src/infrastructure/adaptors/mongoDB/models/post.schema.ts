@@ -1,22 +1,25 @@
 import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { ImageEntity } from './image.schema';
 
 export type PostDocument = PostEntity & Document;
 
 @Schema()
 export class PostEntity {
-    @Prop({ required: true })
-    id: string;
-    @Prop()
-    description: string;
-    @Prop({ required: true })
-    createdAt: Date;
-    @Prop({ required: true })
-    createdBy: string;
-    @Prop({type: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'Image'}], required: true})
-    images: ImageEntity[];
+  @Prop({ required: true })
+  id: string;
+  @Prop()
+  description: string;
+  @Prop({ required: true })
+  createdAt: Date;
+  @Prop({ required: true })
+  createdBy: string;
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.Mixed, ref: 'Image' }],
+    required: true,
+  })
+  images: ImageEntity[];
 }
 
 export const PostSchema = SchemaFactory.createForClass(PostEntity);

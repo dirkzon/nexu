@@ -7,7 +7,7 @@ import { GraphQLConfig } from './config';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphQLModule.forRoot<ApolloGatewayDriverConfig>(GraphQLConfig())
+    GraphQLModule.forRoot<ApolloGatewayDriverConfig>(GraphQLConfig()),
   ],
 })
 export class AppModule {}

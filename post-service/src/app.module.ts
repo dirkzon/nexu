@@ -8,7 +8,10 @@ import { PostStore } from './application/ports/post.store';
 import { MongoPostStore } from './infrastructure/adaptors/mongoDB/mongo.post.store';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { MongoOptionsConfig, MongoFeatureConfig } from './infrastructure/adaptors/mongoDB/config';
+import {
+  MongoOptionsConfig,
+  MongoFeatureConfig,
+} from './infrastructure/adaptors/mongoDB/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { GraphQLConfig } from './infrastructure/adaptors/GraphQL/config';
@@ -22,17 +25,17 @@ import { CommandHandlers } from './application/commandHandlers';
     CqrsModule,
     MongooseModule.forRoot(MongoOptionsConfig()),
     MongooseModule.forFeature(MongoFeatureConfig()),
-    GraphQLModule.forRoot<ApolloFederationDriverConfig>(GraphQLConfig())
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>(GraphQLConfig()),
   ],
   controllers: [RabbitMQController],
   providers: [
     GraphQLController,
     ...QueryHandlers,
     ...CommandHandlers,
-    { 
-      provide: PostStore, 
-      useClass: MongoPostStore
-    }
+    {
+      provide: PostStore,
+      useClass: MongoPostStore,
+    },
   ],
 })
 export class AppModule {}
