@@ -9,9 +9,9 @@ export class ImageUploadedEventHandler
 {
   constructor(@Inject('MEDIA_SERVICE') readonly client: ClientProxy) {}
 
-  handle(event: ImageUploadedEvent) {
+  async handle(event: ImageUploadedEvent) {
     console.log(
-      `Image with id:'${event.id}' has been created for post:'${event.postId}'`,
+      `Image with id:'${event.id}' has been uploaded for post:'${event.postId}'`,
     );
     this.client.emit('image_uploaded', event);
   }

@@ -1,39 +1,34 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { ReadStream } from 'fs';
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { CommandBus } from '@nestjs/cqrs';
 import { UploadImageCommand } from '../../../../application/commands/upload-image.command';
+import { Image } from '../models/Image';
+import { getBufferFromStream } from '../../../../domain/services/image.service';
 
 @Resolver(() => Boolean)
 export class GraphQLController {
   constructor(private readonly commandBus: CommandBus) {}
 
-  @Mutation(() => Boolean)
-  async uploadFile(
-    @Args({ name: 'files', type: () => [GraphQLUpload] })
+  @Mutation(() => [Image])
+  async uploadImages(
+    @Args({ name: 'images', type: () => [GraphQLUpload] })
     uploads: FileUpload[],
-    @Args({ name: 'post_id', type: () => String }) postId: string,
+    // @Args({ name: 'post_id', type: () => String }) postId: string,
   ) {
-    uploads.forEach(async (upload) => {
+    const output = [];
+    for (const image of uploads) {
       const { filename, encoding, mimetype, createReadStream } =
-        await upload.promise;
+        await image.promise;
       if (!mimetype.includes('image')) {
         throw new Error('Wrong filetype');
       }
-      const rs: ReadStream = await createReadStream();
-      const buff = Array<any>();
-      rs.on('data', (chunk) => buff.push(chunk));
-      rs.on('end', async () => {
-        this.commandBus.execute(
-          new UploadImageCommand(
-            postId,
-            filename,
-            encoding,
-            mimetype,
-            Buffer.concat(buff),
-          ),
-        );
-      });
-    });
+      const buff = await getBufferFromStream(createReadStream());
+      output.push(
+        await this.commandBus.execute(
+          new UploadImageCommand('1234', filename, encoding, mimetype, buff),
+        ),
+      );
+    }
+    return output;
   }
 }

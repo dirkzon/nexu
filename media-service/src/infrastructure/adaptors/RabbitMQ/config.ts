@@ -1,4 +1,4 @@
-import { ClientProviderOptions } from '@nestjs/microservices/module/interfaces/clients-module.interface';
+import { ClientProviderOptions } from '@nestjs/microservices';
 
 const { NODE_ENV } = process.env;
 
@@ -7,7 +7,6 @@ const url =
     ? 'amqp://guest:guest@rabbitmq:5672/'
     : 'amqp://guest:guest@localhost:5672/';
 
-// publish to queues
 export function RabbitConfig(): Array<ClientProviderOptions> {
   return [
     {
@@ -25,7 +24,7 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
   ];
 }
 
-// subscribe to queues to microservices
+// Connection to microservices
 export function MicroserviceConfig() {
   //empty
 }

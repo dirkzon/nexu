@@ -33,6 +33,7 @@ export class UploadImageCommandHandler
           new ImageUploadedEvent(id, command.postId, width, height, url),
         );
         return {
+          id: id,
           url: url,
           width: width,
           height: height,

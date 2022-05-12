@@ -1,4 +1,4 @@
-import * as Sharp from 'sharp';
+import Sharp from 'sharp';
 
 export async function resizeImage(
   image_buffer: Buffer,
@@ -21,12 +21,25 @@ function getSizeByAspectRatio(width, height) {
   if (width < height) {
     width = width > 1080 ? 1080 : width;
     const h = Math.floor((width / 3) * 4);
-    console.log('height', h);
     return { width: width, height: h };
   } else {
     height = height > 1440 ? 1440 : height;
     const w = Math.floor((height / 4) * 3);
-    console.log('widht', w);
     return { width: w, height: height };
   }
+}
+
+export async function getBufferFromStream(stream): Promise<Buffer> {
+  return new Promise(async (resolve, reject) => {
+    const buff = Array<any>();
+    await stream
+      .on('data', (chunk) => buff.push(chunk))
+      .on('end', () => {
+        const b = Buffer.concat(buff);
+        resolve(b);
+      })
+      .on('error', (e) => {
+        reject(e);
+      });
+  });
 }
