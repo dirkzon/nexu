@@ -26,7 +26,13 @@ export class GraphQLController {
       const buff = await getBufferFromStream(createReadStream());
       output.push(
         await this.commandBus.execute(
-          new UploadImageCommand('1234', filename, encoding, mimetype, buff),
+          new UploadImageCommand(
+            '5dde8658-710f-466e-b4e2-5350a66338ab',
+            filename,
+            encoding,
+            mimetype,
+            buff,
+          ),
         ),
       );
     }

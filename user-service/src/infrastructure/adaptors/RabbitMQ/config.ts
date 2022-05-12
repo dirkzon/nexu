@@ -25,4 +25,6 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
 }
 
 // Connection to microservices
-export function MicroserviceConfig() {}
+export function MicroserviceConfig() {
+  //emtpy
+}
