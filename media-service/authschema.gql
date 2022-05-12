@@ -31,6 +31,7 @@ type Image {
 
 type Mutation {
   uploadImages(images: [Upload!]!): [Image!]!
+  uploadAvatar(avatar: Upload!): Image!
 }
 
 """The `Upload` scalar type represents a file upload."""
