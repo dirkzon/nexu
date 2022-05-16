@@ -22,7 +22,7 @@ Nexu is an image sharing platform. This monorepository will contain all the serv
 
 - [ ] Post-Service
 - [ ] Account-Service
-- [x  ] Auth-Service
+- [x] Auth-Service
 - [ ] Comment-Service
 - [ ] Notification-Service
 - [ ] Media-Service
