@@ -8,14 +8,12 @@ const localSubGraphs = [
   { name: 'posts', url: 'http://localhost:3000/graphql' },
   { name: 'auth', url: 'http://localhost:4000/graphql' },
   { name: 'users', url: 'http://localhost:2000/graphql' },
-  { name: 'media', url: 'https://localhost:1000/graphql' },
 ];
 
 const prodSubGraphs = [
   { name: 'posts', url: 'http://post-service:3000/graphql' },
   { name: 'auth', url: 'http://auth-service:4000/graphql' },
   { name: 'users', url: 'http://user-service:2000/graphql' },
-  { name: 'media', url: 'https://media-service:1000/graphql' },
 ];
 
 export function GraphQLConfig(): ApolloGatewayDriverConfig {
