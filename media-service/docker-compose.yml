@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  media-service:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    ports:
+      - 1000:1000 
+
+networks:
+  default: 
+      name: nexu_network

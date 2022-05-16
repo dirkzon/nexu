@@ -22,19 +22,4 @@ directive @inaccessible on FIELD_DEFINITION | OBJECT | INTERFACE | UNION | ARGUM
 
 directive @override(from: String!) on FIELD_DEFINITION
 
-type Image {
-  id: ID!
-  url: String!
-  height: Float!
-  width: Float!
-}
-
-type Mutation {
-  uploadImages(images: [Upload!]!): [Image!]!
-  uploadAvatar(avatar: Upload!): Image!
-}
-
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
-
 scalar link__Import
