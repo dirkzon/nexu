@@ -1,6 +1,6 @@
 import { ClientProviderOptions } from '@nestjs/microservices/module/interfaces/clients-module.interface';
 
-const { SERVICE, NODE_ENV } = process.env;
+const { NODE_ENV } = process.env;
 
 const url =
   NODE_ENV === 'prod'
@@ -13,7 +13,7 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
       name: `POST_SERVICE`,
       transport: 5, //Transport.RMQ
       options: {
-        urls: ['amqp://guest:guest@rabbitmq:5672/'],
+        urls: [url],
         noAck: false,
         queue: `post_queue`,
         queueOptions: {

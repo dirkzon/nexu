@@ -19,18 +19,32 @@ type Image {
   width: Float!
 }
 
-type Post {
+type Avatar {
   id: ID!
-  description: String!
+  url: String!
+  height: Float!
+  width: Float!
+}
+
+type PostUser {
+  name: String!
   createdAt: DateTime!
-  createdBy: String!
-  images: [Image!]!
+  avatar: Avatar!
+  id: ID!
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type Post {
+  id: ID!
+  description: String!
+  createdAt: DateTime!
+  createdBy: PostUser!
+  images: [Image!]!
+}
 
 type Query {
   GetPostById(id: String!): Post!

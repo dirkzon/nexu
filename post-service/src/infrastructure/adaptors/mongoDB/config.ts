@@ -1,6 +1,8 @@
 import { ModelDefinition } from '@nestjs/mongoose';
 import { PostEntity, PostSchema } from './models/post.schema';
 import { ImageEntity, ImageSchema } from './models/image.schema';
+import { UserEntity, UserSchema } from './models/user.schema';
+import { AvatarEntity, AvatarSchema } from './models/avatar.schema';
 
 const { NODE_ENV } = process.env;
 
@@ -19,6 +21,14 @@ export function MongoFeatureConfig(): ModelDefinition[] {
     {
       name: ImageEntity.name,
       schema: ImageSchema,
+    },
+    {
+      name: UserEntity.name,
+      schema: UserSchema,
+    },
+    {
+      name: AvatarEntity.name,
+      schema: AvatarSchema,
     },
   ];
 }

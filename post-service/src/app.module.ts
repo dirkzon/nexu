@@ -17,6 +17,8 @@ import { ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { GraphQLConfig } from './infrastructure/adaptors/GraphQL/config';
 import { GraphQLController } from './infrastructure/adaptors/GraphQL/controllers/GraqphQLController';
 import { CommandHandlers } from './application/commandHandlers';
+import { UserStore } from './application/ports/user.store';
+import { RabbitMQStore } from './infrastructure/adaptors/RabbitMQ/controllers/RabbitMQStore';
 
 @Module({
   imports: [
@@ -35,6 +37,10 @@ import { CommandHandlers } from './application/commandHandlers';
     {
       provide: PostStore,
       useClass: MongoPostStore,
+    },
+    {
+      provide: UserStore,
+      useClass: RabbitMQStore,
     },
   ],
 })

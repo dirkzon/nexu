@@ -5,7 +5,7 @@ import Vue from "vue";
 
 export const actions: ActionTree<UserState, any> = {
     async Authorize(state, {user, pass}): Promise<any> {
-        const scope = ["get:self", "get:others", "search:others"];
+        const scope = ["get:self", "get:others", "search:others", "create:post"];
         await axios({
             url: 'http://localhost:5000/graphql',
             method: 'post',

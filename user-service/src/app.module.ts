@@ -17,6 +17,7 @@ import {
 } from './infrastructure/adaptors/MongoDB/config';
 import { MongoUserStore } from './infrastructure/adaptors/MongoDB/mongo.userStore';
 import { RabbitConfig } from './infrastructure/adaptors/RabbitMQ/config';
+import { RabbitMQController } from './infrastructure/adaptors/RabbitMQ/controllers/RabbitMQController';
 
 @Module({
   imports: [
@@ -27,8 +28,9 @@ import { RabbitConfig } from './infrastructure/adaptors/RabbitMQ/config';
     MongooseModule.forRoot(MongoOptionsConfig()),
     MongooseModule.forFeature(MongoFeatureConfig()),
   ],
-  controllers: [],
+  controllers: [RabbitMQController],
   providers: [
+    RabbitMQController,
     GraphQLController,
     ...CommandHandlers,
     ...QueryHandlers,

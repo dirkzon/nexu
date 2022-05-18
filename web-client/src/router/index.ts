@@ -28,6 +28,16 @@ const routes: Array<RouteConfig> = [
     path: "/user/:id",
     name: "user",
     component: () => import("../views/UserPage.vue")
+  },
+  {
+    path: "/create-post",
+    name: "createPost",
+    component: () => import("../views/CreatePost.vue")
+  },
+  {
+    path: "/post/:id",
+    name: "viewPost",
+    component: () => import("../views/ViewPost.vue")
   }
 ];
 

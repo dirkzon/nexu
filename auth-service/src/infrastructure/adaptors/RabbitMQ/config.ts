@@ -27,7 +27,7 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
 // Connection to microservices
 export function MicroserviceConfig() {
   return {
-    name: "AUTH_SERVICE",
+    name: "USER_SERVICE",
     logger: console,
     transport: 5, //Transport.RMQ
     options: { 

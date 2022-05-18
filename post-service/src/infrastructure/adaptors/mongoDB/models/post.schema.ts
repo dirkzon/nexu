@@ -1,7 +1,7 @@
-import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { ImageEntity } from './image.schema';
+import { ImageEntity, ImageSchema } from './image.schema';
+import { UserEntity, UserSchema } from './user.schema';
 
 export type PostDocument = PostEntity & Document;
 
@@ -13,10 +13,13 @@ export class PostEntity {
   description: string;
   @Prop({ required: true })
   createdAt: Date;
-  @Prop({ required: true })
-  createdBy: string;
   @Prop({
-    type: [{ type: mongoose.Schema.Types.Mixed, ref: 'Image' }],
+    type: UserSchema,
+    required: true,
+  })
+  createdBy: UserEntity;
+  @Prop({
+    type: [ImageSchema],
     required: true,
   })
   images: ImageEntity[];

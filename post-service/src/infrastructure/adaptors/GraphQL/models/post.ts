@@ -1,5 +1,6 @@
 import { Field, ObjectType, ID } from '@nestjs/graphql';
 import { Image } from './image';
+import { PostUser } from './user';
 
 @ObjectType()
 export class Post {
@@ -10,7 +11,7 @@ export class Post {
   @Field()
   createdAt: Date;
   @Field()
-  createdBy: string;
+  createdBy: PostUser;
   @Field(() => [Image])
   images: Image[];
 }

@@ -26,5 +26,17 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
 
 // Connection to microservices
 export function MicroserviceConfig() {
-  //emtpy
+  return {
+    name: 'POST_SERVICE',
+    logger: console,
+    transport: 5, //Transport.RMQ
+    options: {
+      urls: [url],
+      noAck: false,
+      queue: `post_queue`,
+      queueOptions: {
+        durable: true,
+      },
+    },
+  };
 }
