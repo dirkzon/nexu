@@ -5,7 +5,7 @@
         <v-card-title> create your post </v-card-title>
         <v-textarea
         class="ma-5"
-        label="write your bio"
+        label="write your description"
         :rules="description_rules"
         hide-details="auto"
         rows="2"

@@ -1,3 +1,17 @@
 export interface PostState {
-    nothing: string;
+    createdAt: Date;
+    createdBy: {
+      name: string;
+      avatar: {
+        url: string;
+        height: number;
+        width: number
+      }
+    }
+    description: string;
+    images: [{
+      url: string;
+      height: number;
+      width: number;
+    }];
 }
