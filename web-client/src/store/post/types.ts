@@ -1,5 +1,7 @@
 export interface PostState {
     createdAt: Date;
+    id: string;
+    totalLikes: number;
     createdBy: {
       name: string;
       avatar: {
@@ -14,4 +16,5 @@ export interface PostState {
       height: number;
       width: number;
     }];
+    liked: boolean;
 }

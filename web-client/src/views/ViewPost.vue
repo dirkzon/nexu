@@ -5,8 +5,7 @@
         <v-carousel 
         hide-delimiters
         :continuous="false"
-        height="auto"
-        >
+        height="auto">
           <v-carousel-item
             v-for="(image,i) in post.images"
             :key="i">
@@ -23,12 +22,15 @@
            {{post.description}}
          </v-card-subtitle>
          <v-divider></v-divider>
+         <v-card-text>
+           {{post.totalLikes}} likes
+         </v-card-text>
          <v-btn
             :disabled="loading"
             @click="setLike()"
             icon
             large>
-            <v-icon v-if="like" large color="red">
+            <v-icon v-if="post.liked" large color="red">
               mdi-heart
             </v-icon>
             <v-icon v-else large color="accent">
@@ -55,7 +57,6 @@ export default Vue.extend({
     UserCard,
   },
    data: () => ({
-    like: false,
     loading: false,
   }),
   mounted: async function () {
@@ -71,8 +72,7 @@ export default Vue.extend({
   },
   methods: {
     setLike: async function () {
-      this.like = !this.like;
-      // await this.$store.dispatch("setLikeOnPost", { post_id: this.post.id, like: this.like });
+      await this.$store.dispatch("setLikeOnPost", { post_id: this.post.id });
     },
     createComment: async function () {
       console.log("to be implemented");

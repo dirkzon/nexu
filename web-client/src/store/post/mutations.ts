@@ -7,5 +7,13 @@ export const mutations: MutationTree<PostState> = {
         state.createdAt = payload.createdAt;
         state.createdBy = payload.createdBy;
         state.images = payload.images;
+        state.id = payload.id;
+        state.totalLikes = payload.totalLikes;
+        state.liked = payload.liked;
     },
+
+    SET_POST_LIKES(state, payload) {
+        state.totalLikes = payload.totalLikes;
+        state.liked = payload.liked
+    }
 }

@@ -12,6 +12,12 @@ export class GetPostByIdQueryHandler
 
   async execute(query: GetPostByIdQuery): Promise<Post> {
     await ValidateClass(query);
-    return await this.store.GetPostById(query.id);
+    const liked = !query.userId
+      ? false
+      : await this.store.HasUserLiked(query.userId, query.id);
+    return await this.store.GetPostById(query.id).then(async (post) => {
+      post.liked = liked;
+      return post;
+    });
   }
 }
