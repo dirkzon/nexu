@@ -18,6 +18,9 @@ export const actions: ActionTree<PostState, any> = {
                     query: `
                         query {
                             GetPostById(id: "${id}") {
+                            id
+                            liked,
+                            totalLikes
                             createdAt,
                             createdBy {
                                 name,
@@ -102,4 +105,35 @@ export const actions: ActionTree<PostState, any> = {
             });
         });
     },
+
+    async setLikeOnPost(state, { post_id }): Promise<any> {
+        console.log(state.state.liked)
+        const like = !state.state.liked;
+        const token = Vue.$cookies.get("access_token");
+        await axios({
+            url: 'http://localhost:5000/graphql',
+            headers:{
+                "user": token,
+            },
+            method: 'post',
+            data: {
+                query: `
+                    mutation {
+                        SetLikeOnPost(like: { like: ${like}, post_id: "${post_id}"})
+                    }
+                    `
+            }
+        })
+        .then((result) => {
+            console.log(result)
+            if (result.data.errors) {
+                throw new Error(result.data.errors[0].message);
+            }
+            state.commit('SET_POST_LIKES', {totalLikes: result.data.data.SetLikeOnPost, liked: like});
+        })
+        .catch((err) => {
+            console.log(err);
+            throw err;
+        });
+    }
 }

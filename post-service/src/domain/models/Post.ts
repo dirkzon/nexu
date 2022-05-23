@@ -7,4 +7,6 @@ export class Post {
   createdAt: Date;
   createdBy: User;
   images: Image[];
+  totalLikes: number;
+  liked?: boolean;
 }

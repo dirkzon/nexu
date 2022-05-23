@@ -44,6 +44,8 @@ type Post {
   createdAt: DateTime!
   createdBy: PostUser!
   images: [Image!]!
+  totalLikes: Float!
+  liked: Boolean!
 }
 
 type Query {
@@ -52,8 +54,14 @@ type Query {
 
 type Mutation {
   CreatePost(new_post: PostInput!): Post!
+  SetLikeOnPost(like: LikeInput!): Float!
 }
 
 input PostInput {
   description: String!
+}
+
+input LikeInput {
+  like: Boolean!
+  post_id: String!
 }

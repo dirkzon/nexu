@@ -12,11 +12,14 @@ const canMakePost = rule()((parent, args, { user }) => {
   return user.scope.includes(Scopes.CAN_MAKE_POST);
 });
 
-export const permissions = shield({
-  Query: {
-    GetPostById: isAuthenticated,
+export const permissions = shield(
+  {
+    Query: {
+      GetPostById: isAuthenticated,
+    },
+    Mutation: {
+      CreatePost: and(isAuthenticated, canMakePost),
+    },
   },
-  Mutation: {
-    CreatePost: and(isAuthenticated, canMakePost),
-  },
-});
+  { allowExternalErrors: true },
+);

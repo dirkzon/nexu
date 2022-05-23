@@ -24,6 +24,7 @@ export class CreatePostCommnandHandler
       createdBy: user as User,
       createdAt: new Date(),
       images: [],
+      totalLikes: 0,
     });
   }
 }

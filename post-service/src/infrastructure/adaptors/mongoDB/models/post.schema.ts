@@ -23,6 +23,10 @@ export class PostEntity {
     required: true,
   })
   images: ImageEntity[];
+  @Prop({ required: true })
+  totalLikes: number;
+  @Prop({ required: true })
+  likedBy: string[];
 }
 
 export const PostSchema = SchemaFactory.createForClass(PostEntity);

@@ -14,4 +14,8 @@ export class Post {
   createdBy: PostUser;
   @Field(() => [Image])
   images: Image[];
+  @Field()
+  totalLikes: number;
+  @Field()
+  liked: boolean;
 }
