@@ -43,10 +43,12 @@
        </v-card>
       <v-card class="pa-5 ma-5">
         <write-comment :can_comment="true" :post_id="post.id"></write-comment>
-        <div v-for="c in comments" :key="c.id">
-          <user-comment :userComment="c"></user-comment>
-          <v-divider></v-divider>
-        </div>
+        <v-card style="overflow-y: scroll;" height="500px" flat>
+          <v-card v-for="c in comments" :key="c.id" flat>
+            <user-comment :userComment="c"></user-comment>
+            <v-divider></v-divider>
+          </v-card>
+        </v-card>
       </v-card>
     </v-card>
   </v-container>
