@@ -1,5 +1,5 @@
 <template>
-    <v-card class="pa-2" :disabled="!can_comment" outlined>
+    <v-card class="pa-2" :disabled="!can_comment" flat>
         <v-form v-model="formValid">
             <v-textarea
                 class="ma-3"

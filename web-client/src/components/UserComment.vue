@@ -4,7 +4,7 @@
         @click="routeToUser(userComment.createdBy.id)"> 
           {{ userComment.createdBy.name | truncate(20) }} 
         </a>
-        <v-card-subtitle>{{userComment.comment}}</v-card-subtitle>
+        <v-card-text>{{userComment.comment}}</v-card-text>
         <v-card-text>
             {{new Date(userComment.createdAt).getDay()}}-
             {{new Date(userComment.createdAt).getMonth()}}-
