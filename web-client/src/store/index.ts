@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { CommentModule } from "./comment";
 import { PostModule } from "./post";
 import { UserModule } from "./user";
 
@@ -9,5 +10,6 @@ export default new Vuex.Store({
   modules: {
     UserModule,
     PostModule,
+    CommentModule,
   },
 });

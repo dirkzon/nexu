@@ -1,5 +1,5 @@
 import { IQuery } from '@nestjs/cqrs';
-import { IsString, Length } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class GetPostByIdQuery implements IQuery {
   @IsString()

@@ -42,7 +42,6 @@ export const actions: ActionTree<PostState, any> = {
                 }
             })
             .then((result) => {
-                console.log(result)
                 if (result.data.errors) {
                     throw new Error(result.data.errors[0].message);
                 }
