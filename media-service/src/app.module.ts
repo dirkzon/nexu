@@ -17,7 +17,6 @@ import { ImageController } from './infrastructure/adaptors/web/controller';
     AzureStorageModule.withConfig(AzureConfig()),
     ConfigModule.forRoot(),
     CqrsModule,
-    //GraphQLModule.forRoot<ApolloFederationDriverConfig>(GraphQLConfig()),
   ],
   controllers: [ImageController],
   providers: [

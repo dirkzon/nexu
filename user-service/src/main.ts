@@ -6,7 +6,9 @@ const { SERVICE } = process.env;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.connectMicroservice(MicroserviceConfig());
+  MicroserviceConfig().forEach((config) => {
+    app.connectMicroservice(config);
+  });
 
   await app.startAllMicroservices();
   await app.listen(2000).then(() => console.log(`${SERVICE} started`));

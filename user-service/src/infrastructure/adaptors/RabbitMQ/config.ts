@@ -26,17 +26,32 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
 
 // Connection to microservices
 export function MicroserviceConfig() {
-  return {
-    name: 'POST_SERVICE',
-    logger: console,
-    transport: 5, //Transport.RMQ
-    options: {
-      urls: [url],
-      noAck: false,
-      queue: `post_queue`,
-      queueOptions: {
-        durable: true,
+  return [
+    {
+      name: 'POST_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `post_queue`,
+        queueOptions: {
+          durable: true,
+        },
       },
     },
-  };
+    {
+      name: 'COMMENT_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `comment_queue`,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    },
+  ];
 }
