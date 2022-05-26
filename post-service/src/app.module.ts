@@ -19,6 +19,7 @@ import { GraphQLController } from './infrastructure/adaptors/GraphQL/controllers
 import { CommandHandlers } from './application/commandHandlers';
 import { UserStore } from './application/ports/user.store';
 import { RabbitMQStore } from './infrastructure/adaptors/RabbitMQ/controllers/RabbitMQStore';
+import { EventHandlers } from './application/eventHandlers';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { RabbitMQStore } from './infrastructure/adaptors/RabbitMQ/controllers/Ra
     GraphQLController,
     ...QueryHandlers,
     ...CommandHandlers,
+    ...EventHandlers,
     {
       provide: PostStore,
       useClass: MongoPostStore,
