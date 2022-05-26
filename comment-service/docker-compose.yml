@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  comment-service:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    ports:
+      - 7000:7000 
+      
+  comment-mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=post-service-db
+    volumes:
+      - ./data/db:/data/db
+      - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    ports:
+      - '27001:27001'
+
+networks:
+  default: 
+      name: nexu_network
