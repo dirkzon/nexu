@@ -6,6 +6,7 @@ import { ValidateClass } from '../../infrastructure/services/validator';
 import { UserStore } from '../ports/user.store';
 import { User } from '../../domain/models/User';
 import { PostCreatedEvent } from '../events/post-created.event';
+import { Post } from '../../domain/models/Post';
 
 @CommandHandler(CreatePostCommand)
 export class CreatePostCommnandHandler
@@ -17,7 +18,7 @@ export class CreatePostCommnandHandler
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(command: CreatePostCommand): Promise<any> {
+  async execute(command: CreatePostCommand): Promise<Post> {
     await ValidateClass(command);
     const user = await this.userStore.getUserById(command.createdBy);
     const id = v4();
@@ -30,8 +31,9 @@ export class CreatePostCommnandHandler
         images: [],
         totalLikes: 0,
       })
-      .then(async () => {
+      .then(async (post) => {
         await this.eventBus.publish(new PostCreatedEvent(id));
+        return post;
       });
   }
 }
