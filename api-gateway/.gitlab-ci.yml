@@ -9,7 +9,7 @@ test:
   script:
     - cd api-gateway
     - npm install
-    - npm run test
+    - npm run test --passWithNoTests
 
 deploy:
   stage: deploy
