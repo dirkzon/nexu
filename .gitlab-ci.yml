@@ -4,3 +4,4 @@ include:
   - local: '/auth-service/.gitlab-ci.yml'
   - local: '/comment-service/.gitlab-ci.yml'
   - local: '/media-service/.gitlab-ci.yml'
+  - local: '/post-service/.gitlab-ci.yml'
