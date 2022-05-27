@@ -1,0 +1,20 @@
+image: node:14.16.0-buster
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - cd comment-service
+    - npm install --force
+    - npm run test
+
+deploy:
+  stage: deploy
+  script: 
+    - cd comment-service
+    - docker compose down
+    - docker rmi comment-service_comment-service
+    - docker build -t comment-service .

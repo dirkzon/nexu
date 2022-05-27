@@ -1,0 +1,20 @@
+image: node:14.16.0-buster
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - cd api-gateway
+    - npm install
+    - npm run test --passWithNoTests
+
+deploy:
+  stage: deploy
+  script: 
+    - cd api-gateway
+    - docker compose down
+    - docker rmi api-gateway_gateway-service
+    - docker build -t api-gateway .
