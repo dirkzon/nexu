@@ -1,0 +1,20 @@
+image: node:14.16.0-buster
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - cd auth-service
+    - npm install
+    - npm run test
+
+deploy:
+  stage: deploy
+  script: 
+    - cd auth-service
+    - docker compose down
+    - docker rmi auth-service_auth-service
+    - docker build -t auth-service .
