@@ -1,0 +1,20 @@
+image: node:14.16.0-buster
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - cd user-service
+    - npm install
+    - npm run test
+
+deploy:
+  stage: deploy
+  script: 
+    - cd user-service
+    - docker compose down
+    - docker rmi user-service_user-service
+    - docker build -t user-service .
