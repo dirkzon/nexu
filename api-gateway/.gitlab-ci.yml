@@ -16,5 +16,5 @@ deploy:
   script: 
     - cd api-gateway
     - docker compose down
-    - docker rmi api-gateway_api-gateway
+    - docker rmi api-gateway_gateway-service
     - docker build -t api-gateway .
