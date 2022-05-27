@@ -15,6 +15,7 @@ deploy:
   stage: deploy
   script: 
     - cd media-service
+    - cp $ENV_FILE .env
     - docker compose down
     - docker rmi media-service_media-service
     - docker build -t media-service .
