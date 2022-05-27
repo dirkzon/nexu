@@ -2,3 +2,4 @@ include:
   - local: '/user-service/.gitlab-ci.yml'
   - local: '/api-gateway/.gitlab-ci.yml'
   - local: '/auth-service/.gitlab-ci.yml'
+  - local: '/comment-service/.gitlab-ci.yml'
