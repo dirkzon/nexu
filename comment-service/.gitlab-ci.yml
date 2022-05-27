@@ -8,7 +8,7 @@ test:
   stage: test
   script:
     - cd comment-service
-    - npm install
+    - npm install --force
     - npm run test
 
 deploy:
