@@ -14,7 +14,7 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
       transport: 5, //Transport.RMQ
       options: {
         urls: [url],
-        noAck: false,
+        noAck: true,
         queue: `post_queue`,
         queueOptions: {
           durable: true,
@@ -26,17 +26,32 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
 
 // Connection to microservices
 export function MicroserviceConfig() {
-  return {
-    name: 'MEDIA_SERVICE',
-    logger: console,
-    transport: 5, //Transport.RMQ
-    options: {
-      urls: [url],
-      noAck: false,
-      queue: `media_queue`,
-      queueOptions: {
-        durable: true,
+  return [
+    {
+      name: 'USER_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `user_queue`,
+        queueOptions: {
+          durable: true,
+        },
       },
     },
-  };
+    {
+      name: 'MEDIA_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `media_queue`,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    },
+  ];
 }

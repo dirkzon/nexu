@@ -13,7 +13,7 @@
       </div>
       <!-- image -->
       <div>
-        <a :href="post.url">
+        <a @click="route">
           <v-img
             @load="setLoading"
             :aspect-ratio="3/4"
@@ -41,7 +41,7 @@
             @click="setLike()"
             icon
             small>
-            <v-icon v-if="this.like" color="red">
+            <v-icon v-if="this.liked" color="red">
               mdi-heart
             </v-icon>
             <v-icon v-else color="accent">
@@ -61,7 +61,7 @@
         <!-- attributes -->
         <div class="text-sm-left" v-if="!loading">
           <v-card-text class="pa-1">
-            {{post.likes}} likes
+            {{post.totalLikes}} likes
           </v-card-text>
         </div>
         <div v-else>
@@ -84,26 +84,30 @@ export default Vue.extend({
   name: "PostThumbnail",
   props: ["post"],
   data: () => ({
-    like: false,
+    liked: false,
     loading: true,
   }),
   components: {
     UserCard,
   },
   mounted () {
-    this.like = this.post.liked;
+    this.liked = this.post.liked;
   },
   methods: {
     setLike: async function () {
       this.like = !this.like;
-      // await this.$store.dispatch("setLikeOnPost", { post_id: this.post.id, like: this.like });
+      await this.$store.dispatch("setLikeOnPost", { post_id: this.post.id });
+      this.$router.push({name: "viewPost", params: { id: this.post.id }})
     },
     createComment: async function () {
-      console.log("to be implemented");
+      this.$router.push({name: "viewPost", params: { id: this.post.id }})
     },
     setLoading: function() {
       this.loading = false;
-    }
+    },
+    route: function() {
+      this.$router.push({name: "viewPost", params: { id: this.post.id }})
+    },
   },
 });
 </script>

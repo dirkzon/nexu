@@ -90,8 +90,9 @@ export default Vue.extend(
         ],
      }),
      methods: {
-         updateAccount: function () {
-             console.log(this.user_bio, this.user_name)
+         updateAccount: async function () {
+            await this.$store.dispatch("UpdateSelf", { name: this.user_name, bio: this.user_bio });
+
          }
      },
      watch: {

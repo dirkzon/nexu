@@ -18,6 +18,7 @@ export class RabbitMQController {
       .execute(new GetUserByIdQuery(id))
       .then((user) => {
         context.getChannelRef().ack(context.getMessage());
+        console.log(user);
         return user;
       });
   }

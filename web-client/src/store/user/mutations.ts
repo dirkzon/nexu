@@ -14,10 +14,4 @@ export const mutations: MutationTree<UserState> = {
         state.profile.email = payload.email;
         state.profile.bio = payload.bio;
     },
-
-    UPDATE_ACCOUNT(state, payload) {
-        Object.keys(payload).forEach((k) => {
-            Vue.set(state.profile, k, payload[k]);
-        });
-    }
 }

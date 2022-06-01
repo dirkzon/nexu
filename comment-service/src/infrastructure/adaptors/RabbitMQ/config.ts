@@ -26,5 +26,19 @@ export function RabbitConfig(): Array<ClientProviderOptions> {
 
 // Connection to microservices
 export function MicroserviceConfig() {
-  //EMPTY
+  return [
+    {
+      name: 'USER_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `user_queue`,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    },
+  ];
 }
