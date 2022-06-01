@@ -132,4 +132,40 @@ export const actions: ActionTree<UserState, any> = {
             });
         })
     },
+
+    async UpdateSelf(state, {name, bio}): Promise<any> {
+        console.log(name, bio)
+        const token = Vue.$cookies.get("access_token");
+        await axios({
+            url: 'http://localhost:5000/graphql',
+            method: 'post',
+            headers:{
+                "user": token
+            },
+            data: {
+                query: `
+                mutation {
+                    UpdateSelf(user: {name: "${name}", bio: "${bio}"}) {
+                        name,
+                        bio,
+                        email,
+                        avatar {
+                          url
+                        }
+                    }
+                  }
+                `
+            }
+        })
+        .then((result) => {
+            if (result.data.errors) {
+                throw new Error(result.data.errors[0].message);
+            }
+            state.commit("SET_ACCOUNT", result.data.data.UpdateSelf)
+        }).catch((err) => {
+            console.log(err);
+            throw err;
+        });
+
+    }
 }

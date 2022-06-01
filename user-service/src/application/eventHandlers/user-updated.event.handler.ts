@@ -1,7 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { ClientProxy } from '@nestjs/microservices';
-import { catchError, timeout } from 'rxjs';
 import { UserUpdatedEvent } from '../events/user-updated.event';
 
 @EventsHandler(UserUpdatedEvent)
@@ -12,11 +11,8 @@ export class UserUpdatedEventHandler
 
   async handle(event: UserUpdatedEvent) {
     console.log(`User with id:'${event.id}' updated`);
-    this.client.emit('user-updated', event).pipe(
-      timeout(5000),
-      catchError((err) => {
-        throw err;
-      }),
-    );
+    this.client.emit('user_updated', event);
+    this.client.emit('user_updated', event);
+    this.client.emit('user_updated', event);
   }
 }

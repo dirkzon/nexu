@@ -4,6 +4,48 @@ import axios from "axios";
 import Vue from "vue";
 
 export const actions: ActionTree<PostState, any> = {
+    async GetPosts(state): Promise<any> {
+        const token = Vue.$cookies.get("access_token");
+        return await axios({
+            url: 'http://localhost:5000/graphql',
+            headers:{
+                "user": token,
+            },
+            method: 'post',
+            data: {
+                query: `
+                    query {
+                        GetPosts(pagination:{first: 10, from: 0}) {
+                        images {
+                            url
+                        }
+                        id,
+                        createdBy {
+                            id,
+                            name,
+                            avatar {
+                            url,
+                            },
+                        },
+                        totalLikes,
+                        liked,
+                        }
+                    }
+                    `
+            }
+        })
+        .then((result) => {
+            if (result.data.errors) {
+                throw new Error(result.data.errors[0].message);
+            }
+            return result.data.data.GetPosts;
+        })
+        .catch((err) => {
+            console.log(err);
+            throw err;
+        });
+    },
+
     async GetPostById(state, {id}): Promise<any> {
         const token = Vue.$cookies.get("access_token");
         console.log(id);

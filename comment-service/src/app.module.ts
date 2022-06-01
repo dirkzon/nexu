@@ -18,17 +18,18 @@ import { UserStore } from './application/ports/user.store';
 import { RabbitMQUserStore } from './infrastructure/adaptors/RabbitMQ/rabbit.user.store';
 import { CommandHandlers } from './application/commandHandlers';
 import { QueryHandlers } from './application/queryHandlers';
+import { RabbitMQController } from './infrastructure/adaptors/RabbitMQ/RabbitMQController';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphQLModule.forRoot<ApolloFederationDriverConfig>(GraphQLConfig()),
     ClientsModule.register(RabbitConfig()),
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>(GraphQLConfig()),
     CqrsModule,
     MongooseModule.forRoot(MongoOptionsConfig()),
     MongooseModule.forFeature(MongoFeatureConfig()),
   ],
-  controllers: [],
+  controllers: [RabbitMQController],
   providers: [
     ...CommandHandlers,
     ...QueryHandlers,

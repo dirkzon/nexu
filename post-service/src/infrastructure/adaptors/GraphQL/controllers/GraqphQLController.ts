@@ -3,7 +3,9 @@ import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 import { CreatePostCommand } from '../../../../application/commands/create-post.command';
 import { SetLikeCommand } from '../../../../application/commands/set-like.command';
 import { GetPostByIdQuery } from '../../../../application/queries/get-post-by-id.query';
+import { GetPostsQuery } from '../../../../application/queries/get-posts.query';
 import { LikeInput } from '../models/like.input';
+import { Pagination } from '../models/pagination';
 import { Post } from '../models/post';
 import { PostInput } from '../models/post.input';
 
@@ -13,6 +15,17 @@ export class GraphQLController {
     private readonly queryBus: QueryBus,
     private readonly commandBus: CommandBus,
   ) {}
+
+  @Query(() => [Post])
+  async GetPosts(
+    @Args({ name: 'pagination', type: () => Pagination })
+    pagination: Pagination,
+    @Context() context,
+  ) {
+    return this.queryBus.execute(
+      new GetPostsQuery(pagination.first, pagination.from, context.user.id),
+    );
+  }
 
   @Query(() => Post)
   async GetPostById(

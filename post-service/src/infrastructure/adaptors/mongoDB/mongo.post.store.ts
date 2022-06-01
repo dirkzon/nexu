@@ -6,6 +6,8 @@ import { PostStore } from '../../../application/ports/post.store';
 import { Post } from '../../../domain/models/Post';
 import { Image } from '../../../domain/models/Image';
 import { ImageDocument, ImageEntity } from './models/image.schema';
+import { Pagination } from '../../../domain/models/Pagination';
+import { UpdateUser } from '../../../domain/models/UserUpdate';
 
 @Injectable()
 export class MongoPostStore implements PostStore {
@@ -15,6 +17,22 @@ export class MongoPostStore implements PostStore {
     @InjectModel(ImageEntity.name)
     private readonly image_model: Model<ImageDocument>,
   ) {}
+
+  async UpdateUser(updated_user: UpdateUser) {
+    await this.post_model.updateMany(
+      { 'createdBy.id': updated_user.id },
+      { $set: { 'createdBy.name': updated_user.name } },
+    );
+  }
+
+  async GetPosts(pagination: Pagination) {
+    return Promise.resolve(
+      await this.post_model
+        .find()
+        .skip(pagination.from)
+        .limit(pagination.first),
+    );
+  }
 
   async SetLike(
     like: boolean,
@@ -41,8 +59,9 @@ export class MongoPostStore implements PostStore {
   }
 
   async HasUserLiked(user_id: string, post_id: string): Promise<boolean> {
-    const test = await this.post_model.findOne({ id: post_id });
-    return test.likedBy.includes(user_id);
+    const post = await this.post_model.findOne({ id: post_id });
+    if (!post) return false;
+    return post.likedBy.includes(user_id);
   }
 
   async AddImage(new_image: Image, post_id: string): Promise<Post> {

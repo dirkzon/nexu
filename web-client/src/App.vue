@@ -8,6 +8,7 @@
           height="70"
           transition="scale-transition"
           alt="Nexu logo"
+          @click="home"
         />
       </div>
       <user-search></user-search>
@@ -33,5 +34,10 @@ export default {
       this.$router.push("/login");
     }
   },
+  methods: {
+    home: function() {
+      this.$router.push({name: "home"})
+    },
+  }
 };
 </script>

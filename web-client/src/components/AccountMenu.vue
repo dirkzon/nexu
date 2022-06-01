@@ -1,9 +1,10 @@
 <template>
 
-    <v-avatar>  
+    <v-avatar @click="account">  
         <img
             alt="Avatar"
             :src="account_data.image"
+            @click="account"
         >
     </v-avatar>
 </template>
@@ -23,5 +24,10 @@ export default Vue.extend({
         return this.$store.getters.getAccount;
     },
   },
+  methods: {
+          account: function(){
+      this.$router.push({name: "account"})
+    }
+  }
 })
 </script>

@@ -6,9 +6,7 @@
         </a>
         <v-card-text>{{userComment.comment}}</v-card-text>
         <v-card-text>
-            {{new Date(userComment.createdAt).getDay()}}-
-            {{new Date(userComment.createdAt).getMonth()}}-
-            {{new Date(userComment.createdAt).getFullYear()}} 
+            {{new Date(userComment.createdAt).getDay()}}-{{new Date(userComment.createdAt).getMonth()}}-{{new Date(userComment.createdAt).getFullYear()}} 
             {{new Date(userComment.createdAt).getHours()}}:{{new Date(userComment.createdAt).getMinutes()}}
         </v-card-text>
     </v-card>
