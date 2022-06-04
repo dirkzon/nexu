@@ -1,7 +1,13 @@
-include:
-  - '/user-service/.gitlab-ci.yml'
-  - '/api-gateway/.gitlab-ci.yml'
-  - '/auth-service/.gitlab-ci.yml'
-  - '/comment-service/.gitlab-ci.yml'
-  - '/media-service/.gitlab-ci.yml'
-  - '/post-service/.gitlab-ci.yml'
+stages:
+  - pipline
+
+pipeline:
+  stage: pipeline
+  trigger: 
+    include:
+      - '/user-service/.gitlab-ci.yml'
+      - '/api-gateway/.gitlab-ci.yml'
+      - '/auth-service/.gitlab-ci.yml'
+      - '/comment-service/.gitlab-ci.yml'
+      - '/media-service/.gitlab-ci.yml'
+      - '/post-service/.gitlab-ci.yml'
