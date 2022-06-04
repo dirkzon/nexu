@@ -9,7 +9,7 @@ test:
   script:
     - cd post-service
     - npm install --force
-    - npm run test
+    - npm run test --passWithNoTests
 
 deploy:
   stage: deploy

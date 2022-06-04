@@ -9,12 +9,15 @@ test:
   script:
     - cd user-service
     - npm install
-    - npm run test
+    - npm run test --passWithNoTests
 
 deploy:
   stage: deploy
   script: 
     - cd user-service
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD docker.io
     - docker compose down
-    - docker rmi user-service_user-service
-    - docker build -t user-service .
+    - docker build -t $CI_REGISTRY_USER/user-service:latest .
+    - docker push $CI_REGISTRY_USER/user-service:latest
+  only: 
+    - main

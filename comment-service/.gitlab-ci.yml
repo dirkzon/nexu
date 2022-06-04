@@ -9,12 +9,15 @@ test:
   script:
     - cd comment-service
     - npm install --force
-    - npm run test
+    - npm run test --passWithNoTests
 
 deploy:
   stage: deploy
   script: 
     - cd comment-service
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD docker.io
     - docker compose down
-    - docker rmi comment-service_comment-service
-    - docker build -t comment-service .
+    - docker build -t $CI_REGISTRY_USER/comment-service:latest .
+    - docker push $CI_REGISTRY_USER/comment-service:latest
+  only: 
+    - main
