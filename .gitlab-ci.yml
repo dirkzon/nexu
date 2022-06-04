@@ -15,16 +15,16 @@ include:
           - "/auth-service/**/*"
           
   - local: '/comment-service/.gitlab-ci.yml'
-      rules:
-        - changes: 
-          - "/comment-service/**/*"
+    rules:
+      - changes: 
+        - "/comment-service/**/*"
 
   - local: '/media-service/.gitlab-ci.yml'
-      rules:
-        - changes: 
-          - "/media-service/**/*"
+    rules:
+      - changes: 
+        - "/media-service/**/*"
 
   - local: '/post-service/.gitlab-ci.yml'
-      rules:
-        - changes: 
-          - "/post-service/**/*"
+    rules:
+      - changes: 
+        - "/post-service/**/*"
