@@ -5,7 +5,7 @@ user-service:
   stage: packages
   only:
     - changes: 
-      - /user-service/**/*
+      - user-service/**/*
   trigger: 
     include: '/user-service/.gitlab-ci.yml'
 
@@ -13,7 +13,7 @@ api-gateway:
   stage: packages
   only:
     - changes: 
-      - /api-gateway/**/*
+      - api-gateway/**/*
   trigger: 
     include: '/api-gateway/.gitlab-ci.yml'
 
@@ -21,7 +21,7 @@ auth-service:
   stage: packages
   only:
     - changes: 
-      - /auth-service/**/*
+      - auth-service/**/*
   trigger: 
     include: '/auth-service/.gitlab-ci.yml'
 
@@ -29,7 +29,7 @@ comment-service:
   stage: packages
   only:
     - changes: 
-      - /comment-service/**/*
+      - comment-service/**/*
   trigger: 
     include: '/comment-service/.gitlab-ci.yml'
 
@@ -37,7 +37,7 @@ media-service:
   stage: packages
   only:
     - changes: 
-      - /media-service/**/*
+      - media-service/**/*
   trigger: 
     include: '/media-service/.gitlab-ci.yml'
 
@@ -45,6 +45,6 @@ post-service:
   stage: packages
   only:
     - changes: 
-      - /post-service/**/*
+      - post-service/**/*
   trigger: 
     include: '/post-service/.gitlab-ci.yml'
