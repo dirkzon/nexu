@@ -1,13 +1,32 @@
 stages:
-  - pipline
+  - packages
 
-pipeline:
-  stage: pipeline
+user-service:
+  stage: packages
   trigger: 
-    include:
-      - '/user-service/.gitlab-ci.yml'
-      - '/api-gateway/.gitlab-ci.yml'
-      - '/auth-service/.gitlab-ci.yml'
-      - '/comment-service/.gitlab-ci.yml'
-      - '/media-service/.gitlab-ci.yml'
-      - '/post-service/.gitlab-ci.yml'
+    include: '/user-service/.gitlab-ci.yml'
+
+api-gateway:
+  stage: packages
+  trigger: 
+    include: '/api-gateway/.gitlab-ci.yml'
+
+auth-service:
+  stage: packages
+  trigger: 
+    include: '/auth-service/.gitlab-ci.yml'
+
+comment-service:
+  stage: packages
+  trigger: 
+    include: '/comment-service/.gitlab-ci.yml'
+
+media-service:
+  stage: packages
+  trigger: 
+    include: '/media-service/.gitlab-ci.yml'
+
+post-service:
+  stage: packages
+  trigger: 
+    include: '/post-service/.gitlab-ci.yml'
