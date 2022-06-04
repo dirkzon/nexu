@@ -1,7 +1,30 @@
 include:
   - local: '/user-service/.gitlab-ci.yml'
+    rules:
+      - changes: 
+        - "/user-service/**/*"
+
   - local: '/api-gateway/.gitlab-ci.yml'
+    rules:
+        - changes: 
+          - "/api-gateway/**/*"
+
   - local: '/auth-service/.gitlab-ci.yml'
+    rules:
+        - changes: 
+          - "/auth-service/**/*"
+          
   - local: '/comment-service/.gitlab-ci.yml'
+      rules:
+        - changes: 
+          - "/comment-service/**/*"
+
   - local: '/media-service/.gitlab-ci.yml'
+      rules:
+        - changes: 
+          - "/media-service/**/*"
+
   - local: '/post-service/.gitlab-ci.yml'
+      rules:
+        - changes: 
+          - "/post-service/**/*"
