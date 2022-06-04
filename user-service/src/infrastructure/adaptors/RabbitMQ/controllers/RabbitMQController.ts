@@ -24,7 +24,6 @@ export class RabbitMQController {
       .execute(new GetUserByIdQuery(id))
       .then((user) => {
         context.getChannelRef().ack(context.getMessage());
-        console.log(user);
         return user;
       });
   }
@@ -34,7 +33,6 @@ export class RabbitMQController {
     @Payload() updatedAvatar: UpdateAvatarInput,
     @Ctx() context: RmqContext,
   ) {
-    console.log(updatedAvatar);
     await this.commandBus.execute(
       new UpdateAvatarCommand(
         updatedAvatar.id,
