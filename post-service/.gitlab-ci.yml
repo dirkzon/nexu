@@ -18,6 +18,7 @@ deploy:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
     - docker compose down
     - docker build -t post-service:latest .
+    - docker tag post-service $CI_REGISTRY_USER/post-service
     - docker push post-service:latest
   only: 
     - main
