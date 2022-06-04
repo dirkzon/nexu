@@ -6,6 +6,9 @@ stages:
 
 test:
   stage: test
+  only:
+    changes: 
+      "/post-service/**/*"
   script:
     - cd post-service
     - npm install --force
@@ -13,6 +16,9 @@ test:
 
 deploy:
   stage: deploy
+  only:
+    changes: 
+      - "/post-service/**/*"
   script: 
     - cd post-service
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD docker.io
