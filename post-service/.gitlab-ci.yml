@@ -4,6 +4,12 @@ stages:
   - test
   - deploy
 
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+variables:
+  REPOSITORY: $CI_REGISTRY/devugides/docker
+
 test:
   stage: test
   script:
@@ -16,5 +22,8 @@ deploy:
   script: 
     - cd post-service
     - docker compose down
-    - docker rmi post-service_post-service
-    - docker build -t post-service .
+    - docker build -t post-service:latest .
+    - docker push post-service:latest
+
+  only: 
+    - main
