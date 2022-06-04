@@ -15,7 +15,9 @@ deploy:
   stage: deploy
   script: 
     - cd media-service
-    - cp $ENV_FILE .env
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD docker.io
     - docker compose down
-    - docker rmi media-service_media-service
-    - docker build -t media-service .
+    - docker build -t $CI_REGISTRY_USER/media-service:latest .
+    - docker push $CI_REGISTRY_USER/media-service:latest
+  only: 
+    - main
