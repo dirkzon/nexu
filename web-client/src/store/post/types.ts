@@ -17,4 +17,5 @@ export interface PostState {
       width: number;
     }];
     liked: boolean;
+    creator: boolean;
 }

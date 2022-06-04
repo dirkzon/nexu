@@ -46,6 +46,7 @@ type Post {
   images: [Image!]!
   totalLikes: Float!
   liked: Boolean!
+  creator: Boolean!
 }
 
 type Query {
@@ -62,6 +63,7 @@ input Pagination {
 type Mutation {
   CreatePost(new_post: PostInput!): Post!
   SetLikeOnPost(like: LikeInput!): Float!
+  deletePost(id: String!): Boolean!
 }
 
 input PostInput {

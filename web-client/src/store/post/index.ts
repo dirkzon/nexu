@@ -7,6 +7,7 @@ import { PostState } from "./types";
 
 const initialState: PostState = {
     id: "",
+    creator: false,
     liked: false,
     totalLikes: 0,
     createdAt: new Date(),

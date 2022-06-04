@@ -8,4 +8,5 @@ export abstract class CommentStore {
   abstract GetAllCommentsForPost(post_id: string);
   abstract UpdateUser(updated_user: UserUpdatedInput);
   abstract CanComment(post_id: string, user_id: string);
+  abstract DeletePostComments(post_id: string);
 }

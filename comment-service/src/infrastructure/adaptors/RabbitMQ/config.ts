@@ -40,5 +40,18 @@ export function MicroserviceConfig() {
         },
       },
     },
+    {
+      name: 'POST_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `post_queue`,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    },
   ];
 }

@@ -9,4 +9,5 @@ export class PostOutput {
   images: Image[];
   totalLikes: number;
   liked: boolean;
+  creator: boolean;
 }

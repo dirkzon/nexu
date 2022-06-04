@@ -1,4 +1,5 @@
 import { CreatePostCommnandHandler } from './create-post.command.handler';
+import { deletePostCommandHandler } from './delete-post.command.handler';
 import { SetImageCommandHandler } from './set-image.command.handler';
 import { SetLikeCommandHandler } from './set-like.command.handler';
 import { UpdateAvatarCommandHandler } from './update-avatar.command.handler';
@@ -10,4 +11,5 @@ export const CommandHandlers = [
   SetLikeCommandHandler,
   UpdateUserCommandHandler,
   UpdateAvatarCommandHandler,
+  deletePostCommandHandler,
 ];

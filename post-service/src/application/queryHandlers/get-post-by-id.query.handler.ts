@@ -17,6 +17,7 @@ export class GetPostByIdQueryHandler
       ? false
       : await this.store.HasUserLiked(query.userId, query.id);
     return await this.store.GetPostById(query.id).then(async (p: Post) => {
+      const creator = p.createdBy.id === query.userId;
       const output: PostOutput = {
         id: p.id,
         images: p.images,
@@ -25,8 +26,8 @@ export class GetPostByIdQueryHandler
         createdBy: p.createdBy,
         totalLikes: p.totalLikes,
         liked: liked,
+        creator: creator,
       };
-      console.log(output);
       return output;
     });
   }

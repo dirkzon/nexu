@@ -1,6 +1,7 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 import { CreatePostCommand } from '../../../../application/commands/create-post.command';
+import { deletePostCommand } from '../../../../application/commands/delete-post.command';
 import { SetLikeCommand } from '../../../../application/commands/set-like.command';
 import { GetPostByIdQuery } from '../../../../application/queries/get-post-by-id.query';
 import { GetPostFromUser } from '../../../../application/queries/get-posts-from-user.query';
@@ -62,8 +63,16 @@ export class GraphQLController {
   async GetAllPostFromUser(
     @Args({ name: 'id', type: () => String }) id: string,
   ) {
-    const test = await this.queryBus.execute(new GetPostFromUser(id));
-    console.log(test);
-    return test;
+    return await this.queryBus.execute(new GetPostFromUser(id));
+  }
+
+  @Mutation(() => Boolean)
+  async deletePost(
+    @Args({ name: 'id', type: () => String }) id: string,
+    @Context() context,
+  ) {
+    return await this.commandBus.execute(
+      new deletePostCommand(context.user.id, id),
+    );
   }
 }

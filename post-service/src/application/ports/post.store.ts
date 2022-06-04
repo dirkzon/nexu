@@ -15,4 +15,5 @@ export abstract class PostStore {
   abstract UpdateUser(updated_user: UpdateUser);
   abstract UpdateAvatar(updated_avatar: Image, user_id: string);
   abstract GetPostsFromUser(user_id: string);
+  abstract DeletePost(post_id: string);
 }

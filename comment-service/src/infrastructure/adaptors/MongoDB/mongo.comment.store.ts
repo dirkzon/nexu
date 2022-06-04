@@ -13,6 +13,10 @@ export class MongoCommentStore implements CommentStore {
     private readonly comment_model: Model<CommentDocument>,
   ) {}
 
+  async DeletePostComments(post_id: string) {
+    await this.comment_model.findOneAndRemove({ postId: post_id });
+  }
+
   async CanComment(post_id: string, user_id: string) {
     const comments = await this.comment_model.find({ postId: post_id });
     let output = true;

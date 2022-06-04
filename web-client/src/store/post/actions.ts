@@ -60,6 +60,7 @@ export const actions: ActionTree<PostState, any> = {
                     query: `
                         query {
                             GetPostById(id: "${id}") {
+                            creator
                             id
                             liked,
                             totalLikes
@@ -220,4 +221,30 @@ export const actions: ActionTree<PostState, any> = {
         });
     },
     
+    async deletePost(state, {post_id}): Promise<any> {
+        const token = Vue.$cookies.get("access_token");
+        await axios({
+            url: 'http://localhost:5000/graphql',
+            method: 'post',
+            headers:{
+                "user": token
+            },
+            data: 
+        {query: 
+        `
+        mutation {
+            deletePost(id:"${post_id}") 
+            }
+        `}
+            
+        })
+        .then((result) => {
+            if (result.data.errors) {
+                throw new Error(result.data.errors[0].message);
+            }
+        }).catch((err) => {
+            console.log(err);
+            throw err;
+        });
+    }
 }

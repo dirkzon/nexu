@@ -51,4 +51,9 @@ export class RabbitMQController {
   async createUser() {
     //
   }
+
+  @EventPattern('post_deleted')
+  async deletePost() {
+    //
+  }
 }

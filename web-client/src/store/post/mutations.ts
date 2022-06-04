@@ -10,6 +10,7 @@ export const mutations: MutationTree<PostState> = {
         state.id = payload.id;
         state.totalLikes = payload.totalLikes;
         state.liked = payload.liked;
+        state.creator = payload.creator;
     },
 
     SET_POST_LIKES(state, payload) {

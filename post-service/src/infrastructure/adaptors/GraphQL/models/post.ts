@@ -18,4 +18,6 @@ export class Post {
   totalLikes: number;
   @Field()
   liked: boolean;
+  @Field()
+  creator: boolean;
 }

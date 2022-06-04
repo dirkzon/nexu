@@ -29,6 +29,7 @@ export class GetAllPostFromUserHandler
               createdBy: post.createdBy,
               totalLikes: post.totalLikes,
               liked: liked,
+              creator: false,
             });
           }),
         );

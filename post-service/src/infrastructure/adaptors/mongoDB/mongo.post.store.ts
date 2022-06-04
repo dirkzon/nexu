@@ -18,6 +18,10 @@ export class MongoPostStore implements PostStore {
     private readonly image_model: Model<ImageDocument>,
   ) {}
 
+  async DeletePost(post_id: string) {
+    await this.post_model.findOneAndRemove({ id: post_id });
+  }
+
   async GetPostsFromUser(user_id: string) {
     return Promise.resolve(
       await this.post_model.find({ 'createdBy.id': user_id }),

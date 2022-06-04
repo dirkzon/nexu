@@ -40,6 +40,9 @@
               mdi-heart-outline
             </v-icon>
           </v-btn>
+          <v-divider></v-divider>
+          <v-btn elevation="2"  color="error" @click="deletePost()" v-if="post.creator"> Delete post </v-btn>
+
        </v-card>
       <v-card class="pa-5 ma-5">
         <write-comment :can_comment="canComment" :post_id="post.id"></write-comment>
@@ -72,18 +75,18 @@ export default Vue.extend({
     loading: false,
   }),
   mounted: async function () {
-                        await this.$store.dispatch(
+     this.$store.dispatch(
       "GetCommentsForPost", 
       {post_id: this.$route.params.id}
     );
-          await this.$store.dispatch(
+     this.$store.dispatch(
     "CanComment", 
     {post_id: this.$route.params.id}
   );  
-    await this.$store.dispatch(
-              "GetPostById", 
-              {id: this.$route.params.id}
-            );
+  this.$store.dispatch(
+      "GetPostById", 
+      {id: this.$route.params.id}
+    );
   },
   computed: {
     post() {
@@ -102,7 +105,11 @@ export default Vue.extend({
     },
     setLoading: function() {
       this.loading = false;
-    }
+    },
+    deletePost: function () {
+      this.$store.dispatch("deletePost", {post_id: this.post.id})
+      this.$router.push({name: "home"});
+    },
   },
 });
 </script>

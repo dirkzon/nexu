@@ -20,6 +20,7 @@ export class GetPostsQueryHandler implements IQueryHandler<GetPostsQuery> {
             const liked = !query.userId
               ? false
               : await this.postStore.HasUserLiked(query.userId, post.id);
+            const creator = post.createdBy.id === query.userId;
             output.push({
               id: post.id,
               images: post.images,
@@ -28,6 +29,7 @@ export class GetPostsQueryHandler implements IQueryHandler<GetPostsQuery> {
               createdBy: post.createdBy,
               totalLikes: post.totalLikes,
               liked: liked,
+              creator: creator,
             });
           }),
         );
