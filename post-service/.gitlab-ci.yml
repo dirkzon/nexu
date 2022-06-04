@@ -15,10 +15,9 @@ deploy:
   stage: deploy
   script: 
     - cd post-service
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD docker.io
     - docker compose down
-    - docker build -t post-service:latest .
-    - docker tag post-service $CI_REGISTRY_USER/post-service
+    - docker build -t $CI_REGISTRY_USER/post-service:latest .
     - docker push post-service:latest
   only: 
     - main
