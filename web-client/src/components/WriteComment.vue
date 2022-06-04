@@ -41,6 +41,7 @@ export default Vue.extend({
             "GetCommentsForPost", 
             {post_id: this.post_id}
         )
+        this.comment = '';
       },
   }
 })

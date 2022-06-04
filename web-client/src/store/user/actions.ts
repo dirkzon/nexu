@@ -75,6 +75,7 @@ export const actions: ActionTree<UserState, any> = {
                             bio,
                             email,
                             avatar{
+                              id,
                               url,
                               height,
                               width,
@@ -167,5 +168,64 @@ export const actions: ActionTree<UserState, any> = {
             throw err;
         });
 
-    }
+    },
+
+    async UploadAvatar(state, {image, image_id}): Promise<any> {
+        const token = Vue.$cookies.get("access_token");
+        const formData = new FormData();
+        formData.append('file', image as any);
+        console.log(formData);
+        await axios({
+            url:`http://localhost:1000/images/upload-avatar/${image_id}`,
+            method:'post',
+            data: formData,
+            headers:{
+                "user": token,
+            },
+        })
+        .then((res) => {
+            state.commit("UPDATE_AVATAR", res);
+        })
+        .catch((err) => {
+            console.log(err);
+            throw err;
+        });
+    },
+
+    async GetUserById(state, {id}): Promise<any> {
+        const token = Vue.$cookies.get("access_token");
+        return new Promise((resolve, reject) => {
+            axios({
+                url: 'http://localhost:5000/graphql',
+                method: 'post',
+                headers:{
+                    "user": token
+                },
+                data: {
+                    query: `
+                        query {
+                            GetUserById(id:"${id}"){
+                                name,
+                                bio,
+                                avatar{
+                                id,
+                                url,
+                                height,
+                                width,
+                                }
+                            }
+                        }
+                        `
+                }
+            }).then((result) => {
+                if (result.data.errors) {
+                    throw new Error(result.data.errors[0].message);
+                }
+                resolve(result.data.data.GetUserById)
+            }).catch((err) => {
+                console.log(err);
+                reject(err)
+            });
+        });
+    },
 }

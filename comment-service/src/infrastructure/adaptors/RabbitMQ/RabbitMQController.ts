@@ -21,4 +21,9 @@ export class RabbitMQController {
       });
     context.getChannelRef().ack(context.getMessage());
   }
+
+  @EventPattern('user_created')
+  async createUser() {
+    //
+  }
 }

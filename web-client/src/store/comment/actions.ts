@@ -24,10 +24,10 @@ export const actions: ActionTree<CommentState, any> = {
         }
        })
        .then((result) => {
-        console.log(result)
         if (result.data.errors) {
             throw new Error(result.data.errors[0].message);
         }
+        state.dispatch('CanComment', {post_id: post_id});
     }).catch((err) => {
         console.log(err);
         throw err;
@@ -35,7 +35,6 @@ export const actions: ActionTree<CommentState, any> = {
    },
 
     async GetCommentsForPost(state, {post_id}): Promise<any> {
-        console.log('asdfdasfdsafdsafsafsdaf', post_id);
         const token = Vue.$cookies.get("access_token");
         await axios({
             url: 'http://localhost:5000/graphql',
@@ -68,5 +67,34 @@ export const actions: ActionTree<CommentState, any> = {
             console.log(err);
             throw err;
         });
+   },
+
+   async CanComment(state, {post_id}): Promise<any> {
+       console.log(post_id)
+    const token = Vue.$cookies.get("access_token");
+        await axios({
+            url: 'http://localhost:5000/graphql',
+            method: 'post',
+            headers:{
+                "user": token
+            },
+            data: {
+                query: `
+                query {
+                    canComment(post_id:"${post_id}")
+                }
+                `   
+            }
+           })
+           .then((result) => {
+            console.log('asdfafjkdlsfhjdasklfjsdaklfjsdkla;fjsdkla;', result)
+         if (result.data.errors) {
+             throw new Error(result.data.errors[0].message);
+         }
+         state.commit("SET_CAN_COMMENT", result.data.data.canComment)
+     }).catch((err) => {
+         console.log(err);
+         throw err;
+     });
    }
 }

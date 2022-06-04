@@ -16,7 +16,7 @@ export default Vue.extend({
   props: ["user"],
   methods: {
     account: function(){
-      this.$router.push({name: "account"})
+      this.$router.push({name: "user", params: {id: this.user.id}});
     },
   }
 });

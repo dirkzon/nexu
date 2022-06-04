@@ -176,5 +176,48 @@ export const actions: ActionTree<PostState, any> = {
             console.log(err);
             throw err;
         });
-    }
+    },
+
+    async GetPostsFromUser(state, {user_id}): Promise<any> {
+        const token = Vue.$cookies.get("access_token");
+            return await new Promise((resolve, reject) => {
+            axios({
+                url: 'http://localhost:5000/graphql',
+                method: 'post',
+                headers:{
+                    "user": token
+                },
+                data: {
+                    query: `
+                        query {
+                        GetAllPostFromUser(id:"${user_id}") {
+                        images {
+                                url
+                            }
+                            id,
+                            createdBy {
+                                id,
+                                name,
+                                avatar {
+                                url,
+                                },
+                            },
+                            totalLikes,
+                            liked,
+                            }
+                        }
+                        `
+                }
+            }).then((result) => {
+                if (result.data.errors) {
+                    throw new Error(result.data.errors[0].message);
+                }
+                resolve(result.data.data.GetAllPostFromUser)
+            }).catch((err) => {
+                console.log(err);
+                reject(err);
+            });
+        });
+    },
+    
 }

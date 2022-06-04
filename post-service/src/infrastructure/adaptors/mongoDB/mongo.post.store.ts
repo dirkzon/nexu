@@ -18,6 +18,19 @@ export class MongoPostStore implements PostStore {
     private readonly image_model: Model<ImageDocument>,
   ) {}
 
+  async GetPostsFromUser(user_id: string) {
+    return Promise.resolve(
+      await this.post_model.find({ 'createdBy.id': user_id }),
+    );
+  }
+
+  async UpdateAvatar(updated_avatar: Image, user_id: string): Promise<any> {
+    await this.post_model.updateMany(
+      { 'createdBy.id': user_id },
+      { $set: { 'createdBy.avatar': updated_avatar } },
+    );
+  }
+
   async UpdateUser(updated_user: UpdateUser) {
     await this.post_model.updateMany(
       { 'createdBy.id': updated_user.id },

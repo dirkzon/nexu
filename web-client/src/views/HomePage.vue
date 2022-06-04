@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <v-btn elevation="2" color="primary" @click="createPost()"> <v-icon>mdi-plus</v-icon> Create post </v-btn>
     <v-row align="center" class="align-center justify-center">
       <div v-for="post in posts" :key="post.id">
         <post-thumbnail :post="post"> </post-thumbnail>
@@ -26,6 +27,11 @@ export default Vue.extend(
       console.log(res);
       this.posts = res;
     })
+  },
+  methods: {
+    createPost: function () {
+      this.$router.push("/create-post")
+    },
   },
 });
 </script>

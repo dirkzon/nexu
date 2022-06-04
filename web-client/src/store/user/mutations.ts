@@ -9,9 +9,14 @@ export const mutations: MutationTree<UserState> = {
     },
 
     SET_ACCOUNT(state, payload) {
-        state.profile.image = payload.avatar.url;
+        state.profile.image.id = payload.avatar.id;
+        state.profile.image.url = payload.avatar.url;
         state.profile.name = payload.name;
         state.profile.email = payload.email;
         state.profile.bio = payload.bio;
     },
+
+    UPDATE_AVATAR(state, payload) {
+        state.profile.image.url = payload;
+    }
 }

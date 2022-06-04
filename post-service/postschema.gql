@@ -51,6 +51,7 @@ type Post {
 type Query {
   GetPosts(pagination: Pagination!): [Post!]!
   GetPostById(id: String!): Post!
+  GetAllPostFromUser(id: String!): [Post!]!
 }
 
 input Pagination {

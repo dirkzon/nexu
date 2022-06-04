@@ -1,6 +1,7 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateCommentCommand } from '../../../../application/commands/create-comment.command';
+import { CanCommentQuery } from '../../../../application/queries/can-comment-on-post.query';
 import { GetCommentsForPostQuery } from '../../../../application/queries/get-comments-for-post.query';
 import { Comment } from '../models/Comment';
 import { CreateCommentInput } from '../models/CreateCommentInput';
@@ -31,7 +32,16 @@ export class GraphqlController {
   async getCommentByPostId(
     @Args({ name: 'post_id', type: () => String }) post_id: string,
   ) {
-    console.log(post_id)
     return await this.queryBus.execute(new GetCommentsForPostQuery(post_id));
+  }
+
+  @Query(() => Boolean)
+  async canComment(
+    @Args({ name: 'post_id', type: () => String }) post_id: string,
+    @Context() context,
+  ) {
+    return await this.queryBus.execute(
+      new CanCommentQuery(post_id, context.user.id),
+    );
   }
 }

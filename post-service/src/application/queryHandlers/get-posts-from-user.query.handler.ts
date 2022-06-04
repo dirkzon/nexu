@@ -1,25 +1,26 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Post } from '../../domain/models/Post';
 import { PostOutput } from '../../domain/models/PostOutput';
+import { ValidateClass } from '../../infrastructure/services/validator';
 import { PostStore } from '../ports/post.store';
-import { GetPostsQuery } from '../queries/get-posts.query';
+import { GetPostFromUser } from '../queries/get-posts-from-user.query';
 
-@QueryHandler(GetPostsQuery)
-export class GetPostsQueryHandler implements IQueryHandler<GetPostsQuery> {
+@QueryHandler(GetPostFromUser)
+export class GetAllPostFromUserHandler
+  implements IQueryHandler<GetPostFromUser>
+{
   constructor(private readonly postStore: PostStore) {}
-  async execute(query: GetPostsQuery): Promise<PostOutput[]> {
+
+  async execute(query: GetPostFromUser): Promise<any> {
+    await ValidateClass(query);
     return await this.postStore
-      .GetPosts({
-        first: query.first,
-        from: query.from,
-      })
-      .then(async (posts: Post[]) => {
+      .GetPostsFromUser(query.id)
+      .then(async (posts) => {
         const output: PostOutput[] = [];
         await Promise.all(
           posts.map(async (post) => {
-            const liked = !query.userId
+            const liked = !query.id
               ? false
-              : await this.postStore.HasUserLiked(query.userId, post.id);
+              : await this.postStore.HasUserLiked(query.id, post.id);
             output.push({
               id: post.id,
               images: post.images,

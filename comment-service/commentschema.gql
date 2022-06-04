@@ -32,6 +32,7 @@ scalar DateTime
 
 type Query {
   getCommentByPostId(post_id: String!): [Comment!]!
+  canComment(post_id: String!): Boolean!
 }
 
 type Mutation {

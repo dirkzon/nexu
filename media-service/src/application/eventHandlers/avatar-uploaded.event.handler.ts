@@ -9,10 +9,11 @@ export class AvatarUploadedEventHandler
 {
   constructor(@Inject('MEDIA_SERVICE') readonly client: ClientProxy) {}
 
-  handle(event: AvatarUploadedEvent) {
+  async handle(event: AvatarUploadedEvent) {
     console.log(
       `Avatar with id:'${event.id}' has been uploaded for user:'${event.userId}'`,
     );
+    this.client.emit('avatar_uploaded', event);
     this.client.emit('avatar_uploaded', event);
   }
 }

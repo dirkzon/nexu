@@ -6,5 +6,6 @@ import { UserUpdatedInput } from '../../infrastructure/adaptors/RabbitMQ/models/
 export abstract class CommentStore {
   abstract CreateComment(new_comment: Comment);
   abstract GetAllCommentsForPost(post_id: string);
-  abstract UpdateUser(updated_user: UserUpdatedInput)
+  abstract UpdateUser(updated_user: UserUpdatedInput);
+  abstract CanComment(post_id: string, user_id: string);
 }

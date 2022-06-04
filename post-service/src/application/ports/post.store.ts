@@ -13,4 +13,6 @@ export abstract class PostStore {
   abstract HasUserLiked(user_id: string, post_id: string);
   abstract GetPosts(pagination: Pagination);
   abstract UpdateUser(updated_user: UpdateUser);
+  abstract UpdateAvatar(updated_avatar: Image, user_id: string);
+  abstract GetPostsFromUser(user_id: string);
 }

@@ -3,7 +3,7 @@
     <v-avatar @click="account">  
         <img
             alt="Avatar"
-            :src="account_data.image"
+            :src="account_data.image.url"
             @click="account"
         >
     </v-avatar>

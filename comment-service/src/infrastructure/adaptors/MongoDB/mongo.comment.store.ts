@@ -13,6 +13,15 @@ export class MongoCommentStore implements CommentStore {
     private readonly comment_model: Model<CommentDocument>,
   ) {}
 
+  async CanComment(post_id: string, user_id: string) {
+    const comments = await this.comment_model.find({ postId: post_id });
+    let output = true;
+    comments.forEach((c) => {
+      if (c.createdBy.id === user_id) output = false;
+    });
+    return output;
+  }
+
   async UpdateUser(updated_user: UserUpdatedInput) {
     await this.comment_model.updateMany(
       { 'createdBy.id': updated_user.id },

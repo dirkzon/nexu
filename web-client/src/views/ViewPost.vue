@@ -42,7 +42,7 @@
           </v-btn>
        </v-card>
       <v-card class="pa-5 ma-5">
-        <write-comment :can_comment="true" :post_id="post.id"></write-comment>
+        <write-comment :can_comment="canComment" :post_id="post.id"></write-comment>
         <v-divider></v-divider>
         <v-card style="overflow-y: scroll;" height="500px" flat class="ma-3">
           <v-card v-for="c in comments" :key="c.id" flat>
@@ -72,10 +72,14 @@ export default Vue.extend({
     loading: false,
   }),
   mounted: async function () {
-        await this.$store.dispatch(
+                        await this.$store.dispatch(
       "GetCommentsForPost", 
       {post_id: this.$route.params.id}
     );
+          await this.$store.dispatch(
+    "CanComment", 
+    {post_id: this.$route.params.id}
+  );  
     await this.$store.dispatch(
               "GetPostById", 
               {id: this.$route.params.id}
@@ -87,14 +91,14 @@ export default Vue.extend({
     },
     comments() {
       return this.$store.getters.getcomments;
+    },
+    canComment() {
+      return this.$store.getters.canComment;
     }
   },
   methods: {
     setLike: async function () {
       await this.$store.dispatch("setLikeOnPost", { post_id: this.post.id });
-    },
-    createComment: async function () {
-      console.log("to be implemented");
     },
     setLoading: function() {
       this.loading = false;

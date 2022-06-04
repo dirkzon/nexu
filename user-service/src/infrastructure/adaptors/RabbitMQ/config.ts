@@ -52,5 +52,18 @@ export function MicroserviceConfig() {
         },
       },
     },
+    {
+      name: 'MEDIA_SERVICE',
+      logger: console,
+      transport: 5, //Transport.RMQ
+      options: {
+        urls: [url],
+        noAck: false,
+        queue: `media_queue`,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    },
   ];
 }

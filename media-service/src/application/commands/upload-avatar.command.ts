@@ -16,6 +16,9 @@ export class UploadAvatarCommand implements ICommand {
   @IsString()
   @IsNotEmpty()
   userId: string;
+  @IsString()
+  @IsNotEmpty()
+  avatarId: string;
 
   constructor(
     userId: string,
@@ -23,11 +26,13 @@ export class UploadAvatarCommand implements ICommand {
     encoding: string,
     mimetype: string,
     buffer: Buffer,
+    avatar_id: string,
   ) {
     this.userId = userId;
     this.name = name;
     this.encoding = encoding;
     this.mimetype = mimetype;
     this.buffer = buffer;
+    this.avatarId = avatar_id;
   }
 }

@@ -5,6 +5,8 @@ import { ImageUploadedInput } from '../models/image-uploaded.input';
 import { SetImageCommand } from '../../../../application/commands/set-image.command';
 import { UserUpdatedInput } from '../models/user-updated.input';
 import { UpdateUserCommand } from '../../../../application/commands/update-user.command';
+import { UpdateAvatarInput } from '../models/update-avatar.input';
+import { UpdateAvatarCommand } from '../../../../application/commands/update-avatar.command';
 
 @Controller()
 export class RabbitMQController {
@@ -44,5 +46,28 @@ export class RabbitMQController {
         context.getChannelRef().reject(e, false);
       });
     context.getChannelRef().ack(context.getMessage());
+  }
+
+  @EventPattern('avatar_uploaded')
+  async updateAvatar(
+    @Payload() updatedAvatar: UpdateAvatarInput,
+    @Ctx() context: RmqContext,
+  ) {
+    console.log('avatar-uploaded event recieved');
+    await this.commandBus.execute(
+      new UpdateAvatarCommand(
+        updatedAvatar.id,
+        updatedAvatar.userId,
+        updatedAvatar.height,
+        updatedAvatar.width,
+        updatedAvatar.url,
+      ),
+    );
+    context.getChannelRef().ack(context.getMessage());
+  }
+
+  @EventPattern('user_created')
+  async createUser() {
+    //
   }
 }

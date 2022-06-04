@@ -5,6 +5,7 @@ import { UserDocument, UserEntity } from './models/user.schema';
 import { User } from '../../../domain/models/User';
 import { UserStore } from '../../../application/ports/user.store';
 import { Pagination } from '../../../domain/models/Pagination';
+import { Image } from '../../../domain/models/Image';
 
 @Injectable()
 export class MongoUserStore implements UserStore {
@@ -12,6 +13,13 @@ export class MongoUserStore implements UserStore {
     @InjectModel(UserEntity.name)
     private readonly model: Model<UserDocument>,
   ) {}
+
+  async UpdateAvatar(updated_avatar: Image, user_id: string): Promise<any> {
+    return await this.model.updateOne(
+      { id: user_id },
+      { $set: { avatar: updated_avatar } },
+    );
+  }
 
   async SearchUsers(query: string, pagination: Pagination): Promise<User[]> {
     return this.model
