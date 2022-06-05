@@ -3,6 +3,16 @@ WORKDIR /app
 RUN apk add --no-cache curl \
     && curl -sL https://unpkg.com/@pnpm/self-installer | node
 ENV NODE_ENV prod
+ARG SERVICE
+ENV SERVICE $SERVICE
+ARG SAS_KEY
+ENV SAS_KEY $SAS_KEY
+ARG CONTAINTER_NAME
+ENV CONTAINTER_NAME $CONTAINTER_NAME
+ARG ACCOUNT_NAME
+ENV ACCOUNT_NAME $ACCOUNT_NAME
+ARG BASE_URI
+ENV BASE_URI $BASE_URI
 USER root
 COPY . ./
 COPY package.json nest-cli.json pnpm-lock.yaml ../
