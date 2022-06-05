@@ -5,6 +5,12 @@ services:
     build:
       context: ./
       dockerfile: dockerfile
+      args:
+        - SERVICE=${SERVICE}
+        - SAS_KEY=${SAS_KEY}
+        - CONTAINTER_NAME=${CONTAINTER_NAME}
+        - ACCOUNT_NAME=${ACCOUNT_NAME}
+        - BASE_URI=${BASE_URI}
     ports:
       - 1000:1000 
 
