@@ -45,7 +45,7 @@ jobs:
           manifests/deployment-3.yml
           manifests/service-3.yml
           manifests/ingress-3.yml
-          manifest/rabbitMQ.yml
+          manifests/rabbitMQ.yml
         images: |
           s6nexu.azurecr.io/nexucluster:${{ github.sha }}
         imagepullsecrets: |
