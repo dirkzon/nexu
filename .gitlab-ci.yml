@@ -2,10 +2,12 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
 
 stages:
+  - test
   - packages
 
 test:
   stage: test
+  needs: []
 
 user-service:
   stage: packages
