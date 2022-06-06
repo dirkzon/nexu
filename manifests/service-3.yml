@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "nexucluster-35d6"
+    labels:
+        app: "nexucluster-35d6"
+spec:
+    type: ClusterIP
+    ports:
+    - port: 1000
+      targetPort: 1000
+      protocol: TCP
+      name: http
+    selector:
+        app: "nexucluster-35d6"
