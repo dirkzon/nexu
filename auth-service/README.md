@@ -9,7 +9,6 @@
 - [x] update user data
 - [x] delete user
 - [x] create token
-- [ ] update password
 
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest.js"/></a>

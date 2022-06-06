@@ -6,10 +6,9 @@
  The post service handles all the logic regarding the posts. The features are:
 
 - [X] Creating posts
-- [ ] Deleting posts 
+- [x] Deleting posts 
 - [x] Get post by id
-- [ ] Get all posts from user
-  - [ ] Use pagination
+- [x] Get all posts from user
 
 ## Tech Stack
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="100" alt="Nest.js"/></a>
