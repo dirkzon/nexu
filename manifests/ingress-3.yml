@@ -1,17 +1,20 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: "nexucluster-aba5"
+    name: "media-service"
     labels:
-        app: "nexucluster-aba5"
+        app: "media-service"
     annotations:
         kubernetes.io/ingress.class: addon-http-application-routing
 spec:
     rules:
-        - host: default-nexucluster-aba5.5521d5a114fc4eb38320.uksouth.aksapp.io
+        - host: default-media-service.5521d5a114fc4eb38320.uksouth.aksapp.io
           http:
             paths:
             - path: /
+              pathType: Prefix
               backend:
-                serviceName: "nexucluster-aba5"
-                servicePort: 1000
+                service:
+                  name: media-service
+                  port:
+                    number: 1000
