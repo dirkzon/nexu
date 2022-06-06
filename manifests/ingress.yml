@@ -13,5 +13,7 @@ spec:
             paths:
             - path: /
               backend:
-                serviceName: "nexucluster-83ba"
-                servicePort: 5000
+                service:
+                  name: nexucluster-83ba
+                  port:
+                    number: 5000
