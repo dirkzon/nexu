@@ -39,4 +39,4 @@ spec:
       image: mongo:latest
       env:
       - name: MONGO_INITDB_DATABASE
-        value: "auth-service-db"
+        value: "auth-service"

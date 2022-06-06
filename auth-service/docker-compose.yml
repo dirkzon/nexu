@@ -11,7 +11,7 @@ services:
   auth-mongo:
     image: mongo:latest
     environment:
-      - MONGO_INITDB_DATABASE=auth-service-db
+      - MONGO_INITDB_DATABASE=auth-service
     volumes:
       - ./data/db:/data/db
       - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
