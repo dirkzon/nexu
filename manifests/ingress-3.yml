@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "nexucluster-aba5"
+    labels:
+        app: "nexucluster-aba5"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: default-nexucluster-aba5.5521d5a114fc4eb38320.uksouth.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "nexucluster-aba5"
+                servicePort: 1000
