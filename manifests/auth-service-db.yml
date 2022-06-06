@@ -11,8 +11,8 @@ spec:
  selector:
   app: auth-service-database
  ports:
-  - port: 27005
-    targetPort: 27005
+  - port: 27017
+    targetPort: 27017
 
 ---
 # deployment
