@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "nexucluster-aba5"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "nexucluster-aba5"
+  template:
+    metadata:
+      labels:
+        app: "nexucluster-aba5"
+    spec:
+      containers:
+        - name: "nexucluster-aba5"
+          image: "s6nexu.azurecr.io/nexucluster"
+          ports:
+          - containerPort: 1000
