@@ -12,7 +12,8 @@ spec:
           http:
             paths:
             - path: /
-             backend:
+              pathType: Prefix            
+              backend:
                 service:
                   name: media-service
                   port:
