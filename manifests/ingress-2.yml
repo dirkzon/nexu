@@ -1,17 +1,20 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: "nexucluster-24bb"
+    name: "comment-service"
     labels:
-        app: "nexucluster-24bb"
+        app: "comment-service"
     annotations:
         kubernetes.io/ingress.class: addon-http-application-routing
 spec:
     rules:
-        - host: default-nexucluster-24bb.5521d5a114fc4eb38320.uksouth.aksapp.io
+        - host: default-comment-service.5521d5a114fc4eb38320.uksouth.aksapp.io
           http:
             paths:
             - path: /
+              pathType: Prefix
               backend:
-                serviceName: "nexucluster-24bb"
-                servicePort: 7000
+                service:
+                  name: comment-service
+                  port:
+                    number: 7000

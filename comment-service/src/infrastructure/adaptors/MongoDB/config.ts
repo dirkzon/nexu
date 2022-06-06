@@ -6,7 +6,7 @@ const { NODE_ENV } = process.env;
 
 export function MongoOptionsConfig(): string {
   return NODE_ENV === 'prod'
-    ? 'mongodb://comment-mongo/comment-service'
+    ? 'mongodb://comment-service-database/comment-service'
     : 'mongodb://localhost/comment-service';
 }
 

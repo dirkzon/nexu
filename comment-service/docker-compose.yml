@@ -8,10 +8,10 @@ services:
     ports:
       - 7000:7000 
       
-  comment-mongo:
+  comment-service-database:
     image: mongo:latest
     environment:
-      - MONGO_INITDB_DATABASE=post-service-db
+      - MONGO_INITDB_DATABASE=comment-service
     volumes:
       - ./data/db:/data/db
       - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro

@@ -44,7 +44,8 @@ jobs:
         manifests: |
           manifests/deployment-2.yml
           manifests/service-2.yml
-          manifests/ingress-2.yml
+          manifests/comment-service-db.yml
+          manifests/rabbitMQ.yml
         images: |
           s6nexu.azurecr.io/nexucluster:${{ github.sha }}
         imagepullsecrets: |

@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
     name: "auth-service"
     labels:
-        app: "nexucluser-f342"
+        app: "auth-service"
     annotations:
         kubernetes.io/ingress.class: addon-http-application-routing
 spec:
@@ -15,6 +15,6 @@ spec:
               pathType: Prefix
               backend:
                 service:
-                  name: nexucluster-83ba
+                  name: auth-service
                   port:
                     number: 4000
