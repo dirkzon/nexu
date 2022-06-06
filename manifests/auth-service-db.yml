@@ -40,5 +40,3 @@ spec:
       env:
       - name: MONGO_INITDB_DATABASE
         value: "auth-service-db"
-      - name: NODE_ENV
-        value: "prod"

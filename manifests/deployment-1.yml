@@ -17,3 +17,6 @@ spec:
           image: "s6nexu.azurecr.io/nexucluster"
           ports:
           - containerPort: 4000
+          env:
+            - name: NODE_ENV
+              value: "prod"
