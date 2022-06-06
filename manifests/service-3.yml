@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "nexucluster-aba5"
+    labels:
+        app: "nexucluster-aba5"
+spec:
+    type: ClusterIP
+    ports:
+    - port: 1000
+      targetPort: 1000
+      protocol: TCP
+      name: http
+    selector:
+        app: "nexucluster-aba5"
