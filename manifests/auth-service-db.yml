@@ -1,0 +1,44 @@
+# service
+#
+# set up a service for the organization database.
+# set the target port and port to the standard postgres port
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: auth-service-database
+spec:
+ selector:
+  app: auth-service-database
+ ports:
+  - port: 27005
+    targetPort: 27005
+
+---
+# deployment
+#
+# set up a single pod with the postgres image.
+# The credentials are passed through the environment variables.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: auth-service-database
+spec:
+ selector:
+  matchLabels:
+   app: auth-service-database
+ replicas: 1
+ template:
+  metadata:
+   labels:
+    app: auth-service-database
+  spec:
+   containers:
+    - name: auth-service-database
+      image: mongo:latest
+      env:
+      - name: MONGO_INITDB_DATABASE
+        value: "auth-service-db"
+      - name: NODE_ENV
+        value: "prod"

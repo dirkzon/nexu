@@ -44,6 +44,7 @@ jobs:
         manifests: |
           manifests/deployment-1.yml
           manifests/service-1.yml
+          manifests/auth-service-db.yml
         images: |
           s6nexu.azurecr.io/nexucluster:${{ github.sha }}
         imagepullsecrets: |
