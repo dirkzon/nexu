@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "nexucluster-f342"
+  name: "auth-service"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: "nexucluster-f342"
+      app: "auth-service"
   template:
     metadata:
       labels:
-        app: "nexucluster-f342"
+        app: "auth-service"
     spec:
       containers:
-        - name: "nexucluster-f342"
+        - name: "auth-service"
           image: "s6nexu.azurecr.io/nexucluster"
           ports:
           - containerPort: 4000

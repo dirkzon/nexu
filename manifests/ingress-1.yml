@@ -1,14 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: "nexucluster-f342"
+    name: "auth-service"
     labels:
         app: "nexucluser-f342"
     annotations:
         kubernetes.io/ingress.class: addon-http-application-routing
 spec:
     rules:
-        - host: default-nexucluster-f342.5521d5a114fc4eb38320.uksouth.aksapp.io
+        - host: default-auth-service.5521d5a114fc4eb38320.uksouth.aksapp.io
           http:
             paths:
             - path: /
