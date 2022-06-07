@@ -1,0 +1,51 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: s6nexu.azurecr.io
+        username: ${{ secrets.acr_s6nexu_username }}
+        password: ${{ secrets.acr_s6nexu_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/user-service" -f  "user-service/dockerfile" -t s6nexu.azurecr.io/nexucluster:${{ github.sha }} --label dockerfile-path=user-service/dockerfile
+        docker push s6nexu.azurecr.io/nexucluster:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_nexucluster_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep default | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace default`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: default
+        container-registry-url: s6nexu.azurecr.io
+        container-registry-username: ${{ secrets.acr_s6nexu_username }}
+        container-registry-password: ${{ secrets.acr_s6nexu_password }}
+        secret-name: nexuclusterdockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: default
+        manifests: |
+          manifests/deployment-5.yml
+          manifests/service-5.yml
+          manifests/ingress-5.yml
+        images: |
+          s6nexu.azurecr.io/nexucluster:${{ github.sha }}
+        imagepullsecrets: |
+          nexuclusterdockerauth
