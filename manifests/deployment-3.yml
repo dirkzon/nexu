@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "media-service"
-          image: "s6nexu.azurecr.io/nexucluster"
+          image: "s6nexu.azurecr.io/media-service"
           ports:
           - containerPort: 1000

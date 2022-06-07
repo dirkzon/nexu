@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: "comment-service"
-          image: "s6nexu.azurecr.io/nexucluster"
+          image: "s6nexu.azurecr.io/comment-service"
           ports:
           - containerPort: 7000
           env:

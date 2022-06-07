@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "post-service"
-          image: "s6nexu.azurecr.io/nexucluster"
+          image: "s6nexu.azurecr.io/post-service"
           ports:
           - containerPort: 3000

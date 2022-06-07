@@ -14,8 +14,8 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/media-service" -f  "media-service/dockerfile" -t s6nexu.azurecr.io/nexucluster:${{ github.sha }} --label dockerfile-path=media-service/dockerfile
-        docker push s6nexu.azurecr.io/nexucluster:${{ github.sha }}
+        docker build "$GITHUB_WORKSPACE/media-service" -f  "media-service/dockerfile" -t s6nexu.azurecr.io/media-service:${{ github.sha }} --label dockerfile-path=media-service/dockerfile
+        docker push s6nexu.azurecr.io/media-service:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
       with:
@@ -47,6 +47,6 @@ jobs:
           manifests/ingress-3.yml
           manifests/rabbitMQ.yml
         images: |
-          s6nexu.azurecr.io/nexucluster:${{ github.sha }}
+          s6nexu.azurecr.io/media-service:${{ github.sha }}
         imagepullsecrets: |
           nexuclusterdockerauth

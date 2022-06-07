@@ -27,8 +27,8 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/api-gateway" -f  "api-gateway/dockerfile" -t s6nexu.azurecr.io/nexucluster:${{ github.sha }} --label dockerfile-path=api-gateway/dockerfile
-        docker push s6nexu.azurecr.io/nexucluster:${{ github.sha }}
+        docker build "$GITHUB_WORKSPACE/api-gateway" -f  "api-gateway/dockerfile" -t s6nexu.azurecr.io/api-gateway:${{ github.sha }} --label dockerfile-path=api-gateway/dockerfile
+        docker push s6nexu.azurecr.io/api-gateway:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
       id: login
@@ -59,6 +59,6 @@ jobs:
           manifests/service.yml
           manifests/ingress.yml
         images: |
-          s6nexu.azurecr.io/nexucluster:${{ github.sha }}
+          s6nexu.azurecr.io/api-gateway:${{ github.sha }}
         imagepullsecrets: |
           nexuclusterdockerauth   
