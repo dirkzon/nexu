@@ -11,7 +11,7 @@ spec:
  selector:
   app: comment-service-database
  ports:
-  - port: 27017
+  - port: 27001
     targetPort: 27001
 
 ---

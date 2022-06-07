@@ -11,7 +11,7 @@ spec:
  selector:
   app: post-service-database
  ports:
-  - port: 27017
+  - port: 27008
     targetPort: 27008
 
 ---
