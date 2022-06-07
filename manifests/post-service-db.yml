@@ -11,8 +11,8 @@ spec:
  selector:
   app: post-service-database
  ports:
-  - port: 27008
-    targetPort: 27008
+  - port: 27017
+    targetPort: 27017
 
 ---
 # deployment

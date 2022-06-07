@@ -11,8 +11,8 @@ spec:
  selector:
   app: comment-service-database
  ports:
-  - port: 27001
-    targetPort: 27001
+  - port: 27017
+    targetPort: 27017
 
 ---
 # deployment
