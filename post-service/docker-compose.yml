@@ -8,15 +8,15 @@ services:
     ports:
       - 3000:3000 
       
-  post-mongo:
+  post-service-database:
     image: mongo:latest
     environment:
-      - MONGO_INITDB_DATABASE=post-service-db
+      - MONGO_INITDB_DATABASE=post-service-database
     volumes:
       - ./data/db:/data/db
       - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
     ports:
-      - '27017:27017'
+      - '27008:27008'
 
 networks:
   default: 

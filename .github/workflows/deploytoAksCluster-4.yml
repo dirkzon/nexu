@@ -45,6 +45,7 @@ jobs:
           manifests/deployment-4.yml
           manifests/service-4.yml
           manifests/ingress-4.yml
+          manifests/ingress-4.yml
         images: |
           s6nexu.azurecr.io/nexucluster:${{ github.sha }}
         imagepullsecrets: |

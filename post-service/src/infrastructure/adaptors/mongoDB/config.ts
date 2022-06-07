@@ -8,7 +8,7 @@ const { NODE_ENV } = process.env;
 
 export function MongoOptionsConfig(): string {
   return NODE_ENV === 'prod'
-    ? 'mongodb://post-mongo/auth-service'
+    ? 'mongodb://post-service-database/auth-service'
     : 'mongodb://localhost/auth-service';
 }
 
