@@ -1,19 +1,22 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "nexucluster-5ac0"
+  name: "user-service"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: "nexucluster-5ac0"
+      app: "user-service"
   template:
     metadata:
       labels:
-        app: "nexucluster-5ac0"
+        app: "user-service"
     spec:
       containers:
-        - name: "nexucluster-5ac0"
-          image: "s6nexu.azurecr.io/nexucluster"
+        - name: "user-service"
+          image: "s6nexu.azurecr.io/user-service"
           ports:
           - containerPort: 2000
+          env:
+            - name: NODE_ENV
+              value: "prod"

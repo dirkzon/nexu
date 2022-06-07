@@ -6,7 +6,7 @@ const { NODE_ENV } = process.env;
 
 export function MongoOptionsConfig(): string {
   return NODE_ENV === 'prod'
-    ? 'mongodb://user-mongo/user-service'
+    ? 'mongodb://user-service-database/user-service'
     : 'mongodb://localhost/user-service';
 }
 

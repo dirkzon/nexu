@@ -1,17 +1,20 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: "nexucluster-5ac0"
+    name: "user-service"
     labels:
-        app: "nexucluster-5ac0"
+        app: "user-service"
     annotations:
         kubernetes.io/ingress.class: addon-http-application-routing
 spec:
     rules:
-        - host: default-nexucluster-5ac0.5521d5a114fc4eb38320.uksouth.aksapp.io
+        - host: default-user-service.5521d5a114fc4eb38320.uksouth.aksapp.io
           http:
             paths:
             - path: /
+              pathType: Prefix
               backend:
-                serviceName: "nexucluster-5ac0"
-                servicePort: 2000
+                service:
+                  name: user-service
+                  port:
+                    number: 2000

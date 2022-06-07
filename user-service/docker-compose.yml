@@ -8,10 +8,10 @@ services:
     ports:
       - 2000:2000 
       
-  user-mongo:
+  user-service-database:
     image: mongo:latest
     environment:
-      - MONGO_INITDB_DATABASE=user-service-db
+      - MONGO_INITDB_DATABASE=user-service-database
     volumes:
       - ./data/db:/data/db
       - ./data/init.js:/docker-entrypoint-initdb.d/init.js:ro
