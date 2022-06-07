@@ -17,3 +17,6 @@ spec:
           image: "s6nexu.azurecr.io/post-service"
           ports:
           - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "prod"

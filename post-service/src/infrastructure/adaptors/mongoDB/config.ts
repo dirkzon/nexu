@@ -8,8 +8,8 @@ const { NODE_ENV } = process.env;
 
 export function MongoOptionsConfig(): string {
   return NODE_ENV === 'prod'
-    ? 'mongodb://post-service-database/auth-service'
-    : 'mongodb://localhost/auth-service';
+    ? 'mongodb://post-service-database/post-service'
+    : 'mongodb://localhost/post-service';
 }
 
 export function MongoFeatureConfig(): ModelDefinition[] {
