@@ -15,7 +15,7 @@ jobs:
       id: build-image
       run: |
         docker build "$GITHUB_WORKSPACE/post-service" -f  "post-service/dockerfile" -t s6nexu.azurecr.io/post-service:${{ github.sha }} --label dockerfile-path=post-service/dockerfile
-        docker push s6nexu.azurecr.io/post-servicer:${{ github.sha }}
+        docker push s6nexu.azurecr.io/post-service:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
       with:
