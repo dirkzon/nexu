@@ -45,6 +45,7 @@ jobs:
           manifests/deployment-5.yml
           manifests/service-5.yml
           manifests/rabbitMQ.yml
+          manifests/user-service-db.yml
         images: |
           s6nexu.azurecr.io/user-service:${{ github.sha }}
         imagepullsecrets: |
