@@ -22,7 +22,6 @@ export class CreatePostCommnandHandler
     await ValidateClass(command);
     const user = await this.userStore.getUserById(command.createdBy);
     const id = v4();
-    console.log(user);
     return await this.postStore
       .CreatePost({
         id: id,

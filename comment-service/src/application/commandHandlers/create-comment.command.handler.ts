@@ -16,7 +16,7 @@ export class CreateCommentCommandHandler
   ) {}
 
   async execute(command: CreateCommentCommand): Promise<Comment> {
-    ValidateClass(command);
+    await ValidateClass(command);
     const user = await this.userStore.getUserById(command.createdBy);
     return await this.commentStore.CreateComment({
       createdAt: new Date(),

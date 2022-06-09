@@ -10,7 +10,10 @@ import { CommandHandlers } from './application/commandHanders';
 import { AuthStore } from './application/ports/AuthStore';
 import { GraphQLConfig } from './infrastructure/adaptors/GraphQL/config';
 import { GraphQLController } from './infrastructure/adaptors/GraphQL/controllers/GraphQLController';
-import { MongoFeatureConfig, MongoOptionsConfig } from './infrastructure/adaptors/MongoDB/config';
+import {
+  MongoFeatureConfig,
+  MongoOptionsConfig,
+} from './infrastructure/adaptors/MongoDB/config';
 import { MongoAuthStore } from './infrastructure/adaptors/MongoDB/mongo.auth.store';
 import { RabbitConfig } from './infrastructure/adaptors/RabbitMQ/config';
 import { RabbitMQController } from './infrastructure/adaptors/RabbitMQ/controllers/rabbitMQController';
