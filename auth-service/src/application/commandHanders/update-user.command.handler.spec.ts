@@ -25,6 +25,7 @@ describe('Update user command handler tests', () => {
     updateUserCommandHandler = new UpdateUserCommandHandler(authStore);
 
     authStore.updateUser = jest.fn(() => Promise.resolve(new User()));
+    authStore.getUserById = jest.fn(() => Promise.resolve(new User()));
   });
 
   it('should exist', () => {
