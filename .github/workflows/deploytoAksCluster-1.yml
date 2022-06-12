@@ -11,9 +11,13 @@ jobs:
         username: ${{ secrets.acr_s6nexu_username }}
         password: ${{ secrets.acr_s6nexu_password }}
 
-    - name: Test
-      id: test
-      run: npm run test
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm test
     
     - name: Build and push image to ACR
       id: build-image
