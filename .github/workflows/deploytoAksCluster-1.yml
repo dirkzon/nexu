@@ -10,6 +10,10 @@ jobs:
         login-server: s6nexu.azurecr.io
         username: ${{ secrets.acr_s6nexu_username }}
         password: ${{ secrets.acr_s6nexu_password }}
+
+    - name: Test
+      id: test
+      run: npm run test
     
     - name: Build and push image to ACR
       id: build-image
