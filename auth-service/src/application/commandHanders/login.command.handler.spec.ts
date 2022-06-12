@@ -1,8 +1,6 @@
 import { CqrsModule } from '@nestjs/cqrs';
 import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
-import { AuthData } from '../../domain/models/auth';
-import { User } from '../../domain/models/User';
 import { LoginCommand } from '../commands/login.command';
 import { AuthStore } from '../ports/AuthStore';
 import { LoginCommandHandler } from './login.command.handler';

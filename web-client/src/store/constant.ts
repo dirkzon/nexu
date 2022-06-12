@@ -1,0 +1,1 @@
+export const nexu_url = "http://default-api-gateway.5521d5a114fc4eb38320.uksouth.aksapp.io/graphql"

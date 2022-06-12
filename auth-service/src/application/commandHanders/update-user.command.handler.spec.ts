@@ -1,6 +1,6 @@
 import { CqrsModule } from '@nestjs/cqrs';
 import { Test } from '@nestjs/testing';
-import { User } from '../../domain/models/User';
+import { User } from '../../domain/models/user';
 import { UpdateUserCommand } from '../commands/update-user.command';
 import { AuthStore } from '../ports/AuthStore';
 import { UpdateUserCommandHandler } from './update-user.command.handler';

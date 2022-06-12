@@ -2,12 +2,13 @@ import { ActionTree } from "vuex";
 import { PostState } from "./types";
 import axios from "axios";
 import Vue from "vue";
+import { nexu_url } from "../constant";
 
 export const actions: ActionTree<PostState, any> = {
     async GetPosts(state): Promise<any> {
         const token = Vue.$cookies.get("access_token");
         return await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             headers:{
                 "user": token,
             },
@@ -51,7 +52,7 @@ export const actions: ActionTree<PostState, any> = {
         console.log(id);
         return await new Promise((resolve, reject) => {
             axios({
-                url:'http://localhost:5000/graphql',
+                url:nexu_url,
                 headers: {
                     "user": token,
                 },
@@ -101,7 +102,7 @@ export const actions: ActionTree<PostState, any> = {
         const token = Vue.$cookies.get("access_token");
         return await new Promise((resolve, reject) => {
             axios({
-                url: 'http://localhost:5000/graphql',
+                url: nexu_url,
                 headers:{
                     "user": token,
                 },
@@ -153,7 +154,7 @@ export const actions: ActionTree<PostState, any> = {
         const like = !state.state.liked;
         const token = Vue.$cookies.get("access_token");
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             headers:{
                 "user": token,
             },
@@ -183,7 +184,7 @@ export const actions: ActionTree<PostState, any> = {
         const token = Vue.$cookies.get("access_token");
             return await new Promise((resolve, reject) => {
             axios({
-                url: 'http://localhost:5000/graphql',
+                url: nexu_url,
                 method: 'post',
                 headers:{
                     "user": token
@@ -224,7 +225,7 @@ export const actions: ActionTree<PostState, any> = {
     async deletePost(state, {post_id}): Promise<any> {
         const token = Vue.$cookies.get("access_token");
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             headers:{
                 "user": token

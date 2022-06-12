@@ -2,12 +2,13 @@ import { ActionTree } from "vuex";
 import { CommentState } from "./types";
 import axios from "axios";
 import Vue from "vue";
+import { nexu_url } from "../constant";
 
 export const actions: ActionTree<CommentState, any> = {
    async PostComment(state, {comment, post_id}): Promise<any> {
     const token = Vue.$cookies.get("access_token");
        await axios({
-        url: 'http://localhost:5000/graphql',
+        url: nexu_url,
         method: 'post',
         headers:{
             "user": token
@@ -37,7 +38,7 @@ export const actions: ActionTree<CommentState, any> = {
     async GetCommentsForPost(state, {post_id}): Promise<any> {
         const token = Vue.$cookies.get("access_token");
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             headers:{
                 "user": token
@@ -73,7 +74,7 @@ export const actions: ActionTree<CommentState, any> = {
        console.log(post_id)
     const token = Vue.$cookies.get("access_token");
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             headers:{
                 "user": token

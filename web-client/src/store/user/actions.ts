@@ -2,12 +2,13 @@ import { ActionTree } from "vuex";
 import { UserState } from "./types";
 import axios from "axios";
 import Vue from "vue";
+import { nexu_url } from "../constant";
 
 export const actions: ActionTree<UserState, any> = {
     async Authorize(state, {user, pass}): Promise<any> {
         const scope = ["get:self", "get:others", "search:others", "create:post", "create:comment"];
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             data: {
                 query: `
@@ -37,7 +38,7 @@ export const actions: ActionTree<UserState, any> = {
 
     async Register(state, {user_name, email, password, bio}): Promise<any> {
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             data: {
                 query: `
@@ -62,7 +63,7 @@ export const actions: ActionTree<UserState, any> = {
     async GetSelf(state): Promise<any> {
         const token = Vue.$cookies.get("access_token");
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             headers:{
                 "user": token
@@ -99,7 +100,7 @@ export const actions: ActionTree<UserState, any> = {
         const token = Vue.$cookies.get("access_token");
         return new Promise((resolve, reject) => {
             axios({
-                url: 'http://localhost:5000/graphql',
+                url: nexu_url,
                 method: 'post',
                 headers:{
                     "user": token
@@ -138,7 +139,7 @@ export const actions: ActionTree<UserState, any> = {
         console.log(name, bio)
         const token = Vue.$cookies.get("access_token");
         await axios({
-            url: 'http://localhost:5000/graphql',
+            url: nexu_url,
             method: 'post',
             headers:{
                 "user": token
@@ -196,7 +197,7 @@ export const actions: ActionTree<UserState, any> = {
         const token = Vue.$cookies.get("access_token");
         return new Promise((resolve, reject) => {
             axios({
-                url: 'http://localhost:5000/graphql',
+                url: nexu_url,
                 method: 'post',
                 headers:{
                     "user": token
