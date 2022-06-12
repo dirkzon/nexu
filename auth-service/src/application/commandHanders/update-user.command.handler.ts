@@ -1,5 +1,5 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { User } from '../../domain/models/user';
+import { User } from '../../domain/models/User';
 import { ValidateClass } from '../../infrastructure/services/validator';
 import { UpdateUserCommand } from '../commands/update-user.command';
 import { AuthStore } from '../ports/AuthStore';
