@@ -1,6 +1,6 @@
 import { CqrsModule } from '@nestjs/cqrs';
 import { Test } from '@nestjs/testing';
-import { User } from '../../domain/models/user';
+import { User } from '../../domain/models/User';
 import { CreateCommentCommand } from '../commands/create-comment.command';
 import { CommentStore } from '../ports/comment.store';
 import { UserStore } from '../ports/user.store';
