@@ -1,6 +1,5 @@
 import { CqrsModule } from '@nestjs/cqrs';
 import { Test } from '@nestjs/testing';
-import { User } from '../../domain/models/User';
 import { UpdateUserCommand } from '../commands/update-user.command';
 import { CommentStore } from '../ports/comment.store';
 import { UpdateUserCommandHandler } from './update-user.command.handler';
@@ -24,7 +23,7 @@ describe('Update user command handler tests', () => {
 
     updateUserCommandHandler = new UpdateUserCommandHandler(commentStore);
 
-    commentStore.UpdateUser = jest.fn(() => Promise.resolve(new User()));
+    commentStore.UpdateUser = jest.fn(() => Promise.resolve(null));
   });
 
   it('should exist', () => {
